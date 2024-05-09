@@ -8,10 +8,9 @@ describe('FilterByHousingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FilterByHousingComponent]
-    })
-    .compileComponents();
-    
+      declarations: [FilterByHousingComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(FilterByHousingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

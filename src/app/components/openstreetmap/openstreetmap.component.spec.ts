@@ -8,10 +8,9 @@ describe('OpenstreetmapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OpenstreetmapComponent]
-    })
-    .compileComponents();
-    
+      declarations: [OpenstreetmapComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(OpenstreetmapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
