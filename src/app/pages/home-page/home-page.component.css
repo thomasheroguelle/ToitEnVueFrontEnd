@@ -1,0 +1,34 @@
+/* GENERAL  */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/img/home-page/home-page.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  transform: translateY(-50%);
+  text-align: left;
+  width: 100%;
+  max-width: 550px;
+}
+
+@media (max-width: 1069px) {
+  .overlay-text {
+    top: 20%;
+    left: auto;
+    transform: translateY(-50%);
+    text-align: center;
+  }
+}
+@media (min-width: 700px) and (max-width: 1069px) {
+  .overlay-text {
+    left: 5%;
+    text-align: left;
+  }
+}
