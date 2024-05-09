@@ -8,10 +8,9 @@ describe('TermsOfUsePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TermsOfUsePageComponent]
-    })
-    .compileComponents();
-    
+      declarations: [TermsOfUsePageComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TermsOfUsePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

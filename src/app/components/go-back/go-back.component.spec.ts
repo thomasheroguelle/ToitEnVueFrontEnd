@@ -8,10 +8,9 @@ describe('GoBackComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GoBackComponent]
-    })
-    .compileComponents();
-    
+      declarations: [GoBackComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(GoBackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

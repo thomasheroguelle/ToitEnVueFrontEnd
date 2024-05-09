@@ -8,10 +8,9 @@ describe('SuccessPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SuccessPageComponent]
-    })
-    .compileComponents();
-    
+      declarations: [SuccessPageComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(SuccessPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

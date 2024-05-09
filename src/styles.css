@@ -8,10 +8,6 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-h1 {
-  font-family: "Lato", sans-serif;
-}
-
 /* FONT  */
 /* LOGO  */
 h1 {
@@ -20,6 +16,7 @@ h1 {
   cursor: pointer;
   margin-left: 2% !important;
   font-size: clamp(25px, 5vw, 20px);
+  font-family: "Lato", sans-serif;
 }
 
 h1:hover {
@@ -188,10 +185,6 @@ img {
   --toggle-view-btn: #222222;
   --white-color: #ffffff;
   --error-handling: #d32f2f;
-}
-
-label {
-  color: var(--label-color);
 }
 
 .custom-mat-dialog {

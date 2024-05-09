@@ -8,10 +8,9 @@ describe('ToggleViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ToggleViewComponent]
-    })
-    .compileComponents();
-    
+      declarations: [ToggleViewComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ToggleViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
