@@ -1,1 +1,199 @@
-/* You can add global styles to this file, and also import other style files */
+/* GENERAL  */
+html,
+body {
+  height: 100%;
+  margin: auto;
+  padding: auto;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-family: "Lato", sans-serif;
+}
+
+/* FONT  */
+/* LOGO  */
+h1 {
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  margin-left: 2% !important;
+  font-size: clamp(25px, 5vw, 20px);
+}
+
+h1:hover {
+  opacity: 90%;
+}
+
+/* HOME  */
+h2 {
+  font-size: clamp(25px, 3vw, 30px);
+  font-weight: 600;
+}
+/* PRODUCT CARD  */
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--blue-color);
+}
+
+/* HOUSING DETAIL  */
+h4 {
+  font-size: clamp(20px, 5vw, 22px);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+h5 {
+  color: var(--blue-color);
+  margin: 2px auto 5px;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+h6 {
+  color: var(--black-color);
+  margin: 2px auto 5px;
+  font-weight: 500;
+  font-size: clamp(16px, 5vw, 18px);
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  font-size: 14px;
+  color: var(--label-color);
+}
+
+li {
+  list-style-type: none;
+}
+/* CONTAINERS  */
+section {
+  width: 45%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 2vh;
+}
+
+@media screen and (min-width: 930px) {
+  section {
+    width: 80%;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 930px) {
+  section {
+    width: 80%;
+    justify-content: initial;
+  }
+}
+
+@media screen and (min-width: 621px) {
+  .section-container-margin {
+    width: 80%;
+  }
+}
+
+img {
+  object-fit: cover;
+}
+
+/* BUTTON  */
+.medium-btn.mat-mdc-unelevated-button.mat-primary {
+  padding: 22px;
+  font-size: 20px;
+  background-color: var(--blue-color) !important;
+}
+
+/* DISPLAY FLEX  */
+.display-flex {
+  display: flex;
+}
+
+.display-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.align-items {
+  display: flex;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-bottom: 5px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.input-container a {
+  color: var(--blue-color);
+}
+
+.section-container-margin {
+  margin-left: 50px;
+}
+
+@media screen and (max-width: 450px) {
+  .section-container-margin {
+    margin-left: 0;
+  }
+}
+
+/* COLORS  */
+:root {
+  --blue-color: #4a47d4;
+  --label-color: #797979;
+  --border-input: #ddd;
+  --not-selected-btn: #e6e6e6;
+  --toggle-view-btn: #222222;
+  --white-color: #ffffff;
+  --error-handling: #d32f2f;
+}
+
+label {
+  color: var(--label-color);
+}
+
+.custom-mat-dialog {
+  width: 70%;
+}
