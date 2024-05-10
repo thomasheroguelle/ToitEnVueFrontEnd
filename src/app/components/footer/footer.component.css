@@ -1,0 +1,50 @@
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--white-color);
+}
+
+.fill-remaining-space {
+  flex: 1;
+}
+
+nav ul li {
+  margin-right: 16px;
+  color: var(--label-color);
+}
+
+nav a {
+  font-size: 14px;
+}
+
+nav ul li:hover {
+  color: #333;
+}
+
+mat-divider {
+  width: 100%;
+}
+h1 {
+  font-size: 20px !important;
+}
+
+@media screen and (max-width: 1350px) {
+  h1 {
+    display: none;
+  }
+
+  nav a {
+    font-size: 12px;
+  }
+
+  .display-flex {
+    justify-content: center;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin-right: 10px;
+  }
+}

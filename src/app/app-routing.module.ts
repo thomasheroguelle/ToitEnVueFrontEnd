@@ -6,6 +6,8 @@ import { HousingCreatePageComponent } from './pages/housing-create-page/housing-
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { UserHousingPageComponent } from './pages/user-housing-page/user-housing-page.component';
+import { PrivacyPolicyPageComponent } from './pages/privacy-policy-page/privacy-policy-page.component';
+import { TermsOfUsePageComponent } from './pages/terms-of-use-page/terms-of-use-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -14,6 +16,14 @@ const routes: Routes = [
   { path: 'register', component: RegistrationPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'my-ads', component: UserHousingPageComponent },
+  {
+    path: 'politique-de-confidentialité',
+    component: PrivacyPolicyPageComponent,
+  },
+  {
+    path: 'conditions-générales',
+    component: TermsOfUsePageComponent,
+  },
 ];
 
 @NgModule({

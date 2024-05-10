@@ -11,12 +11,12 @@ body {
 /* FONT  */
 /* LOGO  */
 h1 {
-  font-weight: bold;
+  font-weight: 500;
   color: #000;
   cursor: pointer;
   margin-left: 2% !important;
   font-size: clamp(25px, 5vw, 20px);
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 h1:hover {
