@@ -1,1 +1,76 @@
-<p>header works!</p>
+<header class="desktop">
+  <mat-toolbar class="toolbar">
+    <h1 routerLink="/" class="fill-remaining-space">ToitEnVue</h1>
+    <span class="fill-remaining-space"></span>
+
+    <nav class="align-items">
+      <ul class="display-flex">
+        <li class="flex-center">
+          <mat-icon>search</mat-icon>
+          <span class="link"><a routerLink="housings">Rechercher</a></span>
+        </li>
+
+        <li class="flex-center">
+          <mat-icon>add</mat-icon>
+          <span class="link"><a routerLink="create">Listez</a></span>
+        </li>
+
+        <li class="flex-center">
+          <mat-icon>account_circle</mat-icon>
+          <span
+            mat-icon-button
+            [matMenuTriggerFor]="desktopMenu"
+            #menuTrigger="matMenuTrigger"
+          >
+            <span>Profil</span>
+          </span>
+        </li>
+
+        <mat-menu #desktopMenu="matMenu" [overlapTrigger]="false">
+          <button routerLink="register" mat-menu-item>
+            <span>Inscription</span>
+          </button>
+
+          <button routerLink="login" mat-menu-item>
+            <span>Connexion</span>
+          </button>
+        </mat-menu>
+      </ul>
+    </nav>
+  </mat-toolbar>
+  <mat-divider></mat-divider>
+</header>
+
+<header class="mobile">
+  <div class="display-flex align-items">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      #menuTrigger="matMenuTrigger"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <button routerLink="/" mat-menu-item>
+        <mat-icon>home</mat-icon>
+        <span>Accueil</span>
+      </button>
+
+      <button routerLink="/create" mat-menu-item>
+        <mat-icon>add</mat-icon>
+        <span>Listez votre propriété</span>
+      </button>
+
+      <button routerLink="/my-ads" mat-menu-item>
+        <mat-icon>store</mat-icon>
+        <span>Mes annonces</span>
+      </button>
+
+      <button routerLink="/login" mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>Connexion</span>
+      </button>
+    </mat-menu>
+    <h1 routerLink="/" class="fill-remaining-space">ToitEnVue</h1>
+  </div>
+</header>

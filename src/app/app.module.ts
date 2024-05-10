@@ -41,6 +41,7 @@ import { PrivacyPolicyPageComponent } from './pages/privacy-policy-page/privacy-
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
