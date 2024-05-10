@@ -43,9 +43,6 @@ h4 {
 }
 
 h5 {
-  color: var(--blue-color);
-  margin: 2px auto 5px;
-  font-weight: bold;
   font-size: 22px;
 }
 
