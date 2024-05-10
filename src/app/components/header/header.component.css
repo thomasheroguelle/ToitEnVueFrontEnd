@@ -1,0 +1,59 @@
+.desktop {
+  background-color: var(--background-color);
+}
+
+.toolbar {
+  display: flex;
+  background-color: var(--white-color);
+}
+
+.link {
+  margin-right: 10px;
+  color: var(--black-color);
+  padding: 0 10px;
+  font-size: 1rem;
+}
+
+span {
+  font-size: 16px;
+}
+
+mat-divider {
+  width: 100%;
+}
+
+mat-icon {
+  margin-right: 5px;
+}
+
+nav {
+  margin-right: 44px;
+}
+
+.fill-remaining-space {
+  flex: 1;
+}
+
+.mobile .display-flex h1 {
+  text-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+  .desktop {
+    display: block;
+  }
+
+  .mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+}
