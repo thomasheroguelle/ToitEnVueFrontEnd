@@ -42,6 +42,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PrivacyPolicyComponent,
     HeaderComponent,
     FooterComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
