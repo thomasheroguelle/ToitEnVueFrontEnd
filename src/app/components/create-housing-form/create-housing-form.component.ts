@@ -14,12 +14,15 @@ import { Router } from '@angular/router';
   styleUrl: './create-housing-form.component.css',
 })
 export class CreateHousingFormComponent {
-  createForm!: FormGroup;
+  housingForm!: FormGroup;
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
   user_id: number;
   username!: string;
+  selectedFiles: File[] = [];
+  selectedFilesURL: string[] = [];
+
   constructor(
     private fb: FormBuilder,
     private housingService: HousingCRUDService,
@@ -30,8 +33,8 @@ export class CreateHousingFormComponent {
     this.username = this.storageService.getUser().username;
   }
 
-  ngOnInit(): void {
-    this.createForm = this.fb.group({
+  housingFormInit() {
+    this.housingForm = this.fb.group({
       title: [
         'Magnifique appartement situé en centre-ville',
         Validators.required,
@@ -59,31 +62,85 @@ export class CreateHousingFormComponent {
       user_id: this.user_id,
       username: this.username,
     });
+  }
 
+  ngOnInit(): void {
     console.log(this.user_id);
     console.log(this.username);
     if (!this.isLoggedIn()) {
       alert('Veuillez vous connecter pour accéder au formulaire');
       this.router.navigate(['/login']);
     }
+
+    this.housingFormInit();
   }
 
   isLoggedIn(): boolean {
     return this.storageService.isLoggedIn();
   }
 
-  onSubmit(): void {
-    if (this.createForm) {
-      const createForm = this.createForm.value;
-      this.housingService.createHousing(createForm).subscribe(
-        (data) => {
-          this.isSuccessful = true;
-        },
-        (error) => {
-          this.errorMessage = error;
-          this.isSignUpFailed = true;
-        },
-      );
+  onFileChanged(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      for (let i = 0; i < event.target.files.length; i++) {
+        const file = event.target.files[i];
+        this.selectedFiles.push(file);
+
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.selectedFilesURL.push(e.target.result as string);
+        };
+
+        reader.readAsDataURL(file);
+      }
+      console.log('Fichiers sélectionnés:', this.selectedFiles);
     }
+  }
+  private constructHousingObject() {
+    return {
+      address: this.housingForm.get('address')?.value,
+      zipcode: this.housingForm.get('zipcode')?.value,
+      city: this.housingForm.get('city')?.value,
+      title: this.housingForm.get('title')?.value,
+      description: this.housingForm.get('description')?.value,
+
+      category: this.housingForm.get('category')?.value,
+
+      rooms: this.housingForm.get('rooms')?.value,
+      bedrooms: this.housingForm.get('bedrooms')?.value,
+      bathrooms: this.housingForm.get('bathrooms')?.value,
+      furnished: this.housingForm.get('furnished')?.value,
+
+      living_space: this.housingForm.get('living_space')?.value,
+
+      highlights: this.housingForm.get('highlights')?.value,
+
+      year_of_construction: this.housingForm.get('year_of_construction')?.value,
+
+      housingCondition: this.housingForm.get('housingCondition')?.value,
+
+      price: this.housingForm.get('price')?.value,
+
+      user_id: this.user_id,
+      username: this.username,
+    };
+  }
+
+  onSubmit() {
+    const newHousing = this.constructHousingObject();
+
+    const formData = new FormData();
+    formData.append('housing', JSON.stringify(newHousing));
+    this.selectedFiles.forEach((file) => {
+      formData.append('files', file);
+    });
+    this.housingService.createHousing(formData).subscribe(
+      (response) => {
+        console.log('Réponse du serveur :', response);
+      },
+      (error) => {
+        console.error('Erreur lors de la requête :', error);
+      },
+    );
   }
 }
