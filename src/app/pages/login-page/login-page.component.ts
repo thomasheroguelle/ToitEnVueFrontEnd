@@ -29,7 +29,7 @@ export class LoginPageComponent {
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
-      this.getUser = this.storageService.getUser();
+      this.router.navigate(['housings']);
     }
   }
 
@@ -43,11 +43,16 @@ export class LoginPageComponent {
         this.isLoginFailed = false;
         this.getUser = this.storageService.getUser();
         this.router.navigate(['housings']);
+        this.reloadPage();
       },
       error: (err) => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       },
     });
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }

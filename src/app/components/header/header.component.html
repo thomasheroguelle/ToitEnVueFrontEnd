@@ -14,33 +14,53 @@
           <mat-icon>add</mat-icon>
           <span class="link"><a routerLink="create">Listez</a></span>
         </li>
+      </ul>
 
-        <li class="flex-center">
-          <mat-icon>account_circle</mat-icon>
-          <span
-            mat-icon-button
-            [matMenuTriggerFor]="desktopMenu"
-            #menuTrigger="matMenuTrigger"
-          >
-            <span>Profil</span>
-          </span>
-        </li>
-
+      @if (!isLoggedIn) {
+        <!-- if user !logged -->
+        <mat-icon>account_circle</mat-icon>
+        <span
+          mat-icon-button
+          [matMenuTriggerFor]="desktopMenu"
+          #menuTrigger="matMenuTrigger"
+        >
+          <span>Profil</span>
+        </span>
         <mat-menu #desktopMenu="matMenu" [overlapTrigger]="false">
           <button routerLink="register" mat-menu-item>
             <span>Inscription</span>
           </button>
-
           <button routerLink="login" mat-menu-item>
             <span>Connexion</span>
           </button>
-
+        </mat-menu>
+      } @else {
+        <span
+          class="user"
+          mat-icon-button
+          [matMenuTriggerFor]="deconnexion"
+          #menuTrigger="matMenuTrigger"
+        >
+          <div class="align-items">
+            <mat-icon>account_circle</mat-icon>
+            <span>{{ username }}</span>
+          </div>
+        </span>
+        <mat-menu #deconnexion="matMenu" [overlapTrigger]="false">
+          <button routerLink="profile" mat-menu-item>
+            <mat-icon>account_circle</mat-icon>
+            <span>Mon profil</span>
+          </button>
           <button (click)="logout()" mat-menu-item>
             <mat-icon>exit_to_app</mat-icon>
             <span>Déconnexion</span>
           </button>
+          <button mat-menu-item>
+            <mat-icon>home</mat-icon>
+            <span routerLink="/my-ads">Mes annonces</span>
+          </button>
         </mat-menu>
-      </ul>
+      }
     </nav>
   </mat-toolbar>
   <mat-divider></mat-divider>
@@ -56,25 +76,31 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
-      <button routerLink="/" mat-menu-item>
-        <mat-icon>home</mat-icon>
-        <span>Accueil</span>
-      </button>
+      @if (!isLoggedIn) {
+        <button routerLink="/login" mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Connexion</span>
+        </button>
+      } @else {
+        <button routerLink="/" mat-menu-item>
+          <mat-icon>home</mat-icon>
+          <span>Accueil</span>
+        </button>
 
-      <button routerLink="/create" mat-menu-item>
-        <mat-icon>add</mat-icon>
-        <span>Listez votre propriété</span>
-      </button>
+        <button routerLink="/create" mat-menu-item>
+          <mat-icon>add</mat-icon>
+          <span>Listez votre propriété</span>
+        </button>
 
-      <button routerLink="/my-ads" mat-menu-item>
-        <mat-icon>store</mat-icon>
-        <span>Mes annonces</span>
-      </button>
-
-      <button routerLink="/login" mat-menu-item>
-        <mat-icon>account_circle</mat-icon>
-        <span>Connexion</span>
-      </button>
+        <button routerLink="/my-ads" mat-menu-item>
+          <mat-icon>store</mat-icon>
+          <span>Mes annonces</span>
+        </button>
+        <button (click)="logout()" mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Déconnexion</span>
+        </button>
+      }
     </mat-menu>
     <h1 routerLink="/" class="fill-remaining-space">ToitEnVue</h1>
   </div>
