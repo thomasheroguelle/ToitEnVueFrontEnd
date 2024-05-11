@@ -26,8 +26,4 @@ export class StorageService {
     }
     return false;
   }
-
-  clean(): void {
-    window.sessionStorage.clear();
-  }
 }
