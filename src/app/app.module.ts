@@ -43,6 +43,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
+import { FormsModule } from '@angular/forms';
+import { httpInterceptorProviders } from '../helpers/http.interceptor';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -93,8 +96,10 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
     MatTooltipModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
