@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
 import { IHousing } from '../../../interfaces/IHousing';
 
 @Injectable({
@@ -11,20 +11,15 @@ export class HousingCRUDService {
 
   constructor(private httpClient: HttpClient) {}
 
-  createHousing(createHousingData: IHousing): Observable<IHousing> {
+  createHousing(formData: FormData): Observable<any> {
+    const headers = new HttpHeaders();
     return this.httpClient
-      .post<IHousing>(this.apiUrl, createHousingData)
-      .pipe(catchError(this.handleError));
-  }
-
-  private handleError(error: any): Observable<never> {
-    let errorMessage = 'An error occurred while processing your request.';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      errorMessage = error.error ? error.error : errorMessage;
-    }
-    console.error(errorMessage);
-    return throwError(errorMessage);
+      .post<any>('http://localhost:8091/api/v1/housing', formData, { headers })
+      .pipe(
+        catchError((error) => {
+          alert(error);
+          return of(null);
+        }),
+      );
   }
 }

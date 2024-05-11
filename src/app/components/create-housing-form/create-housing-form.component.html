@@ -1,6 +1,6 @@
 <div class="wrapper-container">
   <div class="card-container">
-    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="housingForm" (ngSubmit)="onSubmit()">
       <div class="input-container">
         <p class="register">Création de logement</p>
         <label for="title">Titre</label>
@@ -20,7 +20,6 @@
           <option value="appartement">Appartement</option>
           <option value="maison">Maison</option>
           <option value="studio">Studio</option>
-          <!-- Ajoutez d'autres options selon vos besoins -->
         </select>
         <label for="rooms">Nombre de pièces</label>
         <input type="number" formControlName="rooms" />
@@ -41,8 +40,18 @@
           <option value="good_condition">Bon état</option>
           <option value="average_condition">État moyen</option>
           <option value="poor_condition">Mauvais état</option>
-          <!-- Ajoutez d'autres options selon vos besoins -->
         </select>
+      </div>
+      <div class="input-container margin">
+        <label for="fileInput">Joindre des images</label>
+        <input
+          type="file"
+          id="file"
+          (change)="onFileChanged($event)"
+          accept=".jpg, .jpeg, .png"
+          required
+          multiple="multiple"
+        />
       </div>
       <button type="submit" mat-flat-button color="primary">Créer</button>
     </form>
