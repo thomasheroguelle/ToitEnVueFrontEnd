@@ -43,7 +43,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from '../helpers/http.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -98,6 +98,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
