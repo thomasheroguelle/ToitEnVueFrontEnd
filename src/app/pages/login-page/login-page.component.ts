@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IUserLogin } from '../../../IUserLogin';
+import { IUserLogin } from '../../../interfaces/IUserLogin';
 import { AuthService } from '../../services/authentication/auth.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';

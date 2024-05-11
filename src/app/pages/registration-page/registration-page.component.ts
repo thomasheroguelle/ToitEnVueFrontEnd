@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/authentication/auth.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
-import { IUserRegistration } from '../../../IUserRegistration';
+import { IUserRegistration } from '../../../interfaces/IUserRegistration';
 
 @Component({
   selector: 'app-registration-page',
