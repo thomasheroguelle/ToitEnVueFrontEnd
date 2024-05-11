@@ -1,1 +1,6 @@
-<p>housing-list works!</p>
+<div class="product-list">
+  <app-housing-card
+    *ngFor="let house of housesList"
+    [house]="house"
+  ></app-housing-card>
+</div>
