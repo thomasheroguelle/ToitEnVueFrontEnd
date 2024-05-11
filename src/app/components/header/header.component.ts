@@ -9,11 +9,24 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
+  isLoggedIn = false;
+  username?: string;
+
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
     private router: Router,
   ) {}
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.storageService.isLoggedIn();
+
+    if (this.isLoggedIn) {
+      const user = this.storageService.getUser();
+      this.username = user.username;
+    }
+  }
+
   logout(): void {
     this.authService.logout().subscribe({
       next: (res) => {

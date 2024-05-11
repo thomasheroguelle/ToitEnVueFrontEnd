@@ -5,6 +5,8 @@ const USER_KEY = 'auth-user';
   providedIn: 'root',
 })
 export class StorageService {
+  private ownerUsernameKey = 'ownerUsername';
+
   public getUser(): any {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
@@ -29,5 +31,13 @@ export class StorageService {
 
   clean(): void {
     window.sessionStorage.clear();
+  }
+
+  setOwnerUsername(username: string): void {
+    localStorage.setItem(this.ownerUsernameKey, username);
+  }
+
+  getOwnerUsername(): string | null {
+    return localStorage.getItem(this.ownerUsernameKey);
   }
 }

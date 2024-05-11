@@ -27,6 +27,14 @@ export class RegistrationPageComponent {
     private storageService: StorageService,
   ) {}
 
+  ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.isSuccessful = true;
+      this.storageService.getUser();
+      this.route.navigate(['/housings']);
+    }
+  }
+
   onSubmit(): void {
     const { username, email, password } = this.form;
     this.authService.register(username, email, password).subscribe({
@@ -34,6 +42,7 @@ export class RegistrationPageComponent {
         this.isSuccessful = true;
         this.storageService.saveUser(data);
         this.route.navigate(['housings']);
+        this.reloadPage();
       },
       error: (err) => {
         this.errorMessage = err.error.message;
