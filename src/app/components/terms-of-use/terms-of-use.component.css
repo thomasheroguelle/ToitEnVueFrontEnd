@@ -1,0 +1,44 @@
+article {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h5 {
+  font-weight: 500;
+}
+
+p,
+li {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+a {
+  color: var(--blue-color);
+  font-size: 14px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  margin-left: 20px;
+  padding-inline-start: 5px;
+}
+
+p:last-of-type {
+  margin-bottom: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+ul li {
+  list-style-type: disc;
+}
