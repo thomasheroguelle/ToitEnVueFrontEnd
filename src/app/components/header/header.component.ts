@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { StorageService } from '../../services/storage/storage.service';
 import { AuthService } from '../../services/authentication/auth.service';
-import { EventBusService } from '../../services/shared/event-bus.service';
 import { Router } from '@angular/router';
 
 @Component({
