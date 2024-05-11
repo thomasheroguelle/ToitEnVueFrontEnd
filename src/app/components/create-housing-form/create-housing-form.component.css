@@ -1,0 +1,269 @@
+/* GENERAL  */
+span {
+  font-family: "Roboto", sans-serif;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+i,
+.error-message {
+  font-size: 12px;
+}
+
+.divider {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.margin {
+  margin-top: 2vw;
+}
+
+/* FORM 1  */
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-input);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+.coordinates {
+  gap: 10px;
+}
+.coordinates-margin {
+  margin-top: 1vw;
+}
+
+textarea {
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid var(--border-input);
+}
+
+/* FORM2 */
+.label-category {
+  padding: 11px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: clamp(16px, 5vw, 20px);
+  cursor: pointer;
+}
+
+button {
+  border: none;
+}
+
+.align-items {
+  align-items: center;
+}
+
+.label-category:hover {
+  opacity: 90%;
+}
+
+/* FORM3 */
+.counter {
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background-color: var(--white-color);
+  color: var(--label-color);
+  text-decoration: none;
+
+  padding: 10px;
+  border-radius: 50%;
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+}
+
+.display-flex-column {
+  gap: 15px;
+}
+
+.furnished-block {
+  display: flex;
+  align-items: center;
+}
+
+.selected-furnished {
+  border: 2px solid var(--blue-color);
+}
+
+.not-selected-furnished {
+  border: 2px solid var(--not-selected-btn);
+}
+
+.isFurnished {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  width: 100%;
+  background-color: var(--white-color);
+}
+
+.isFurnished img {
+  width: 100px;
+  height: auto;
+}
+
+.flex-center {
+  gap: 15px;
+  width: 100%;
+}
+/* FORM4 */
+
+/* FORM5 */
+.highlights-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.highlight-button {
+  width: 30%;
+  height: 100px;
+  border: none;
+  border-radius: 15px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.selected-highlight {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+}
+
+.highlight-button:hover {
+  opacity: 90%;
+}
+
+.selected {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+}
+
+.not-selected {
+  background-color: var(--not-selected-btn);
+  color: var(--black-color) !important;
+}
+
+/* FORM7 */
+.label-condition {
+  color: var(--white-color);
+  padding: 17px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 25px;
+}
+
+/* FORM8 */
+.overflow {
+  overflow-y: auto;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--label-color);
+}
+.delete-button i {
+  font-size: 20px;
+}
+
+.delete-button:hover {
+  opacity: 90%;
+}
+
+.selected-images-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selected-image-container {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: var(--black-color);
+}
+
+/* DISPLAY NONE  */
+#maison-category[type="radio"],
+#appartement-category[type="radio"],
+#housingConditions[type="radio"] {
+  display: none;
+}
+
+.display-none {
+  display: none;
+}
+
+/* RESPONSIVE  */
+@media screen and (max-width: 620px) {
+  .isFurnished {
+    width: 100%;
+    padding: 7px;
+    margin-top: 10px;
+  }
+
+  .input-container .flex-center {
+    display: block;
+  }
+  .highlight-button {
+    width: auto;
+    height: auto;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  .section-container-margin {
+    width: 100%;
+  }
+
+  .input-container {
+    margin-top: 1rem;
+  }
+
+  .highlight-button {
+    width: 45%;
+    height: 80px;
+  }
+
+  .selected-image {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media screen and (min-width: 621px) {
+  .section-container-margin {
+    width: 80%;
+  }
+
+  .highlight-button {
+    width: 30%;
+    height: 100px;
+  }
+}

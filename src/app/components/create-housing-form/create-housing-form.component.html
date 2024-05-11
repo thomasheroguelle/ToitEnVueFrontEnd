@@ -1,59 +1,509 @@
-<div class="wrapper-container">
-  <div class="card-container">
-    <form [formGroup]="housingForm" (ngSubmit)="onSubmit()">
-      <div class="input-container">
-        <p class="register">Création de logement</p>
-        <label for="title">Titre</label>
-        <input type="text" formControlName="title" />
-        <label for="address">Adresse</label>
-        <input type="text" formControlName="address" />
-        <label for="city">Ville</label>
-        <input type="text" formControlName="city" />
-        <label for="zipcode">Code postal</label>
-        <input type="number" formControlName="zipcode" />
-        <label for="description">Description</label>
-        <textarea formControlName="description"></textarea>
-        <label for="price">Prix</label>
-        <input type="number" formControlName="price" />
-        <label for="category">Catégorie</label>
-        <select formControlName="category">
-          <option value="appartement">Appartement</option>
-          <option value="maison">Maison</option>
-          <option value="studio">Studio</option>
-        </select>
-        <label for="rooms">Nombre de pièces</label>
-        <input type="number" formControlName="rooms" />
-        <label for="bedrooms">Nombre de chambres</label>
-        <input type="number" formControlName="bedrooms" />
-        <label for="bathrooms">Nombre de salles de bain</label>
-        <input type="number" formControlName="bathrooms" />
-        <label for="furnished">Meublé</label>
-        <input type="checkbox" formControlName="furnished" />
-        <label for="living_space">Surface habitable</label>
-        <input type="number" formControlName="living_space" />
-        <label for="highlights">Points forts</label>
-        <input type="text" formControlName="highlights" />
-        <label for="year_of_construction">Année de construction</label>
-        <input type="number" formControlName="year_of_construction" />
-        <label for="housingCondition">État du logement</label>
-        <select formControlName="housingCondition">
-          <option value="good_condition">Bon état</option>
-          <option value="average_condition">État moyen</option>
-          <option value="poor_condition">Mauvais état</option>
-        </select>
+<ng-container *ngIf="isLoggedIn(); else loginPrompt">
+  <form
+    class="display-flex-column"
+    [formGroup]="housingForm"
+    (ngSubmit)="onSubmit()"
+    enctype="multipart/form-data"
+  >
+    <!-- FIRST STEP  -->
+    <section *ngIf="currentStep === 1" formGroupName="one">
+      <div class="section-container-margin">
+        <h5>C'est parti !</h5>
+        <h6>Quelques informations sur votre bien</h6>
+
+        <div class="input-container coordinates-margin">
+          <label for="title">Titre de votre annonce</label>
+          <input type="text" id="title" formControlName="title" />
+        </div>
+
+        <div class="coordinates display-flex">
+          <div class="input-container coordinates-margin">
+            <label for="address">Adresse</label>
+            <input
+              type="text"
+              id="address"
+              formControlName="address"
+              required
+            />
+          </div>
+
+          <div class="input-container coordinates-margin">
+            <label for="zipcode">Code postal</label>
+            <input type="text" id="zipcode" formControlName="zipcode" />
+          </div>
+        </div>
+        <div class="input-container coordinates-margin">
+          <label for="city">Ville</label>
+          <input type="text" id="address" formControlName="city" required />
+        </div>
+        <div class="input-container coordinates-margin">
+          <label for="description">Description de l'annonce</label>
+          <textarea
+            id="description"
+            formControlName="description"
+            required
+            rows="5"
+            cols="33"
+            type="text"
+          >
+          </textarea>
+        </div>
+
+        <div class="input-container coordinates-margin">
+          <button
+            color="primary"
+            mat-flat-button
+            class="medium-btn"
+            (click)="nextStep()"
+            [disabled]="housingForm.get('one')?.invalid"
+          >
+            Suivant
+          </button>
+        </div>
+        <div class="display-flex">
+          <button routerLink="/" mat-menu-item>
+            <mat-icon>keyboard_backspace</mat-icon>
+            <span>Retour</span>
+          </button>
+        </div>
       </div>
-      <div class="input-container margin">
-        <label for="fileInput">Joindre des images</label>
-        <input
-          type="file"
-          id="file"
-          (change)="onFileChanged($event)"
-          accept=".jpg, .jpeg, .png"
-          required
-          multiple="multiple"
-        />
+    </section>
+
+    <!--  STEP TWO  -->
+    <section *ngIf="currentStep === 2" formGroupName="two">
+      <div class="section-container-margin">
+        <h5>Type de bien</h5>
+        <h6>Quel type de bien souhaitez-vous publier ?</h6>
+
+        <div class="input-container margin">
+          <label
+            (click)="categoryValue(typeOfHousing[0])"
+            onkeydown="categoryValue(typeOfHousing[0])"
+            for="categoryAppartement"
+            class="label-category flex-between align-items"
+            [ngClass]="{
+              selected:
+                housingForm.get('two.category')?.value === typeOfHousing[0],
+              'not-selected':
+                housingForm.get('two.category')?.value !== typeOfHousing[0]
+            }"
+          >
+            <input
+              id="appartement-category"
+              type="radio"
+              formControlName="category"
+              [value]="typeOfHousing[0]"
+            />
+            Appartement
+            <i class="fa-solid fa-arrow-right"></i>
+          </label>
+        </div>
+        <div class="input-container margin">
+          <button
+            role="button"
+            (click)="categoryValue(typeOfHousing[1])"
+            onkeydown="categoryValue(typeOfHousing[1])"
+            role="button"
+            class="label-category flex-between align-items"
+            for="categoryMaison"
+            [ngClass]="{
+              selected:
+                housingForm.get('two.category')?.value === typeOfHousing[1],
+              'not-selected':
+                housingForm.get('two.category')?.value !== typeOfHousing[1]
+            }"
+          >
+            <input
+              id="maison-category"
+              type="radio"
+              formControlName="category"
+              [value]="typeOfHousing[1]"
+            />
+            Maison
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+        <div class="display-flex">
+          <button (click)="prevStep()" mat-menu-item>
+            <mat-icon>keyboard_backspace</mat-icon>
+            <span>Retour</span>
+          </button>
+        </div>
       </div>
-      <button type="submit" mat-flat-button color="primary">Créer</button>
-    </form>
+    </section>
+    <!-- Troisième étape -->
+    <section *ngIf="currentStep === 3" formGroupName="three">
+      <div class="section-container-margin">
+        <h5>Agencement</h5>
+        <h6>Dites nous en plus</h6>
+        <div class="display-flex-column margin">
+          <div class="flex-between">
+            <label for="address">Pièces</label>
+            <div class="furnished-block">
+              <input
+                class="display-none"
+                type="number"
+                formControlName="rooms"
+              />
+              <button
+                class="counter"
+                (click)="roomsDecrement()"
+                style="margin-right: 5px"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
+              <span style="margin-right: 5px">{{ roomsCounter }}</span>
+              <button class="counter" (click)="roomsIncrement()">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex-between">
+            <label for="bedrooms">Chambres</label>
+            <div class="furnished-block">
+              <input
+                class="display-none"
+                type="number"
+                formControlName="bedrooms"
+              />
+              <button
+                style="margin-right: 5px"
+                class="counter"
+                (click)="bedroomsDecrement()"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
+              <span style="margin-right: 5px">{{ bedroomsCounter }}</span>
+              <button class="counter" (click)="bedroomsIncrement()">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex-between">
+            <label for="bathrooms">Salles de bain</label>
+            <div class="furnished-block">
+              <input
+                class="display-none"
+                type="number"
+                formControlName="bathrooms"
+              />
+              <button
+                style="margin-right: 5px"
+                class="counter"
+                (click)="bathroomDecrement()"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
+              <span style="margin-right: 5px">{{ bathroomsCounter }}</span>
+              <button class="counter" (click)="bathroomIncrement()">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-container margin">
+          <h6>Type de bien</h6>
+          <div class="flex-center">
+            <button
+              role="button"
+              class="isFurnished"
+              [ngClass]="{
+                'selected-furnished':
+                  housingForm.get('three.furnished')?.value === true,
+                'not-selected-furnished':
+                  housingForm.get('three.furnished')?.value === false
+              }"
+              (click)="setFurnished(true)"
+              onkeydown="setFurnished(true)"
+            >
+              <img
+                src="assets/img/housing-form/furnished/isFurnished.png"
+                alt="isFurnished image"
+              />
+              <label><b>Meublé</b></label>
+            </button>
+            <button
+              class="isFurnished"
+              [ngClass]="{
+                'selected-furnished':
+                  housingForm.get('three.furnished')?.value === false,
+                'not-selected-furnished':
+                  housingForm.get('three.furnished')?.value === true
+              }"
+              (click)="setFurnished(false)"
+              onkeydown="setFurnished(false)"
+              role="button"
+            >
+              <img
+                src="assets/img/housing-form/furnished/isNotFurnished.png"
+                alt="is not Furnished image"
+              />
+              <label><b>Non Meublé</b></label>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-container margin">
+          <button
+            color="primary"
+            mat-flat-button
+            class="medium-btn"
+            (click)="nextStep()"
+          >
+            Suivant
+          </button>
+        </div>
+        <div class="display-flex">
+          <button (click)="prevStep()" mat-menu-item>
+            <mat-icon>keyboard_backspace</mat-icon>
+            <span>Retour</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Quatrième étape -->
+    <section *ngIf="currentStep === 4" formGroupName="four">
+      <div class="section-container-margin">
+        <h5>Surfaces</h5>
+        <h6>Quelle est la surface de votre bien ?</h6>
+        <div class="input-container margin">
+          <label for="living_space">Surface habitable</label>
+          <input
+            type="text"
+            placeholder="85 m²"
+            id="living_space"
+            formControlName="living_space"
+            required
+          />
+        </div>
+
+        <div class="input-container margin">
+          <button
+            color="primary"
+            mat-flat-button
+            class="medium-btn"
+            (click)="nextStep()"
+            [disabled]="
+              housingForm.get('four.living_space')?.errors?.['required']
+            "
+          >
+            Suivant
+          </button>
+        </div>
+        <div class="display-flex">
+          <button (click)="prevStep()" mat-menu-item>
+            <mat-icon>keyboard_backspace</mat-icon>
+            <span>Retour</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Cinquième étape -->
+    <section *ngIf="currentStep === 5" formGroupName="five">
+      <div class="section-container-margin">
+        <h5>Equipements et points forts</h5>
+        <h6>Comment votre logement est-il équipé ?</h6>
+        <div class="highlights-container">
+          <button
+            type="button"
+            class="highlight-button"
+            [ngClass]="{
+              'selected-highlight': selectedHighlights.includes(
+                highlight.title
+              ),
+              'not-selected': !selectedHighlights.includes(highlight.title)
+            }"
+            *ngFor="let highlight of highLights"
+            (click)="updateSelected(highlight)"
+          >
+            <b>{{ highlight.title }}</b>
+          </button>
+        </div>
+
+        <div class="input-container margin">
+          <button
+            color="primary"
+            mat-flat-button
+            class="medium-btn"
+            (click)="nextStep()"
+            [disabled]="selectedHighlights.length === 0"
+          >
+            Suivant
+          </button>
+        </div>
+        <div class="display-flex">
+          <button (click)="prevStep()" mat-menu-item>
+            <mat-icon>keyboard_backspace</mat-icon>
+            <span>Retour</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Sixième étape -->
+    <section *ngIf="currentStep === 6" formGroupName="six">
+      <div class="section-container-margin">
+        <h5>Construction</h5>
+        <h6>Quelle est l’année de construction de votre bien ?</h6>
+        <div class="input-container margin">
+          <label for="year_of_construction">Année de construction</label>
+          <input
+            type="text"
+            placeholder="1999"
+            id="year_of_construction"
+            formControlName="year_of_construction"
+            required
+          />
+        </div>
+
+        <div class="input-container margin">
+          <button
+            color="primary"
+            mat-flat-button
+            class="medium-btn"
+            (click)="nextStep()"
+            [disabled]="
+              housingForm.get('six.year_of_construction')?.errors?.['required']
+            "
+          >
+            Suivant
+          </button>
+        </div>
+        <div class="display-flex">
+          <button (click)="prevStep()" mat-menu-item>
+            <mat-icon>keyboard_backspace</mat-icon>
+            <span>Retour</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Septième étape -->
+    <section *ngIf="currentStep === 7" formGroupName="seven">
+      <div class="section-container-margin">
+        <h5>Condition</h5>
+        <h6>Dans quel état se trouve votre bien ?</h6>
+        <div class="input-container">
+          <label
+            *ngFor="let condition of housingConditions"
+            class="label-condition"
+            [ngClass]="{
+              selected: selectedCondition === condition,
+              'not-selected': selectedCondition != condition
+            }"
+          >
+            <input
+              (click)="housingConditionValue(condition)"
+              onkeydown="housingConditionValue(condition)"
+              id="housingConditions"
+              type="radio"
+              formControlName="housingCondition"
+              [value]="condition"
+              required
+            />
+            {{ formatHousingConditionLabel(condition) }}
+          </label>
+        </div>
+
+        <div class="input-container margin">
+          <button
+            color="primary"
+            mat-flat-button
+            class="medium-btn"
+            (click)="nextStep()"
+          >
+            Suivant
+          </button>
+        </div>
+        <div class="display-flex">
+          <button (click)="prevStep()" mat-menu-item>
+            <mat-icon>keyboard_backspace</mat-icon>
+            <span>Retour</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Huitième étape -->
+    <section *ngIf="currentStep === 8" formGroupName="eight">
+      <div class="section-container-margin overflow">
+        <h5>Tarif journalier ?</h5>
+        <h6>
+          Pouvez-vous nous dire à combien vous estimez la valeur de votre bien à
+          la journée?
+        </h6>
+
+        <div class="input-container margin">
+          <label for="price">Votre prix estimé</label>
+          <input
+            type="number"
+            placeholder="1500 € / mois"
+            id="price"
+            formControlName="price"
+            required
+          />
+        </div>
+        <div class="input-container margin">
+          <label for="fileInput">Joindre des images</label>
+          <input
+            type="file"
+            id="file"
+            (change)="onFileChanged($event)"
+            accept=".jpg, .jpeg, .png"
+            required
+            multiple="multiple"
+          />
+          <div *ngIf="selectedFilesURL.length === 0">
+            Veuillez séléctionner au moins 1 image
+          </div>
+        </div>
+
+        <div class="selected-images-container">
+          <div
+            *ngFor="let fileURL of selectedFilesURL; let fileIndex = index"
+            class="selected-image-container"
+          >
+            <img
+              [src]="fileURL"
+              alt="Selected Image"
+              class="selected-image"
+              width="250"
+            />
+            <button
+              class="delete-button"
+              (click)="deleteSelectedImage(fileIndex)"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-container margin">
+          <button
+            color="primary"
+            mat-flat-button
+            class="medium-btn"
+            type="submit"
+            [disabled]="
+              selectedFilesURL.length === 0 ||
+              housingForm.get('eight.price')?.errors?.['required']
+            "
+          >
+            Valider
+          </button>
+        </div>
+        <div class="display-flex">
+          <button (click)="prevStep()" mat-menu-item>
+            <mat-icon>keyboard_backspace</mat-icon>
+            <span>Retour</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </form>
+</ng-container>
+<ng-template #loginPrompt>
+  <div class="flex-center">
+    <p>Veuillez vous connecter pour accéder au formulaire.</p>
   </div>
-</div>
+</ng-template>

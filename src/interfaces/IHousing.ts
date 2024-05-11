@@ -1,3 +1,5 @@
+import { IFile } from './IFile';
+
 export interface IHousing {
   title: string;
   address: string;
@@ -16,6 +18,7 @@ export interface IHousing {
   housingCondition: HousingConditionEnum;
   user_id: number;
   username: string;
+  files: IFile[];
 }
 
 export enum CategoryEnum {
@@ -31,5 +34,34 @@ export enum HousingConditionEnum {
 
 export interface HighLights {
   title: string;
-  img: string;
 }
+
+export const HIGHLIGHTS: HighLights[] = [
+  {
+    title: 'BALCON',
+  },
+  {
+    title: 'TERASSE',
+  },
+  {
+    title: 'PARKING',
+  },
+  {
+    title: 'ASCENCEUR',
+  },
+  {
+    title: 'CLIMATISATION',
+  },
+  {
+    title: 'ALARME',
+  },
+  {
+    title: 'GARAGE',
+  },
+  {
+    title: 'JARDIN',
+  },
+  {
+    title: 'PISCINE',
+  },
+];

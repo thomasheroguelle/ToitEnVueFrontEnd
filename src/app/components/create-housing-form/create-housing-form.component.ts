@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HousingCRUDService } from '../../services/housing/housing-crud.service';
 import {
   CategoryEnum,
+  HIGHLIGHTS,
+  HighLights,
   HousingConditionEnum,
 } from '../../../interfaces/IHousing';
 import { StorageService } from '../../services/storage/storage.service';
@@ -22,6 +24,16 @@ export class CreateHousingFormComponent {
   username!: string;
   selectedFiles: File[] = [];
   selectedFilesURL: string[] = [];
+  roomsCounter = 1;
+  bedroomsCounter = 1;
+  bathroomsCounter = 1;
+  currentStep = 1;
+  isFurnished: boolean = true;
+  selectedHighlights: string[] = [];
+  selectedCondition: string = HousingConditionEnum.good_condition;
+  typeOfHousing: string[] = [CategoryEnum.appartement, CategoryEnum.maison];
+  highLights: HighLights[] = HIGHLIGHTS;
+  housingConditions = Object.values(HousingConditionEnum);
 
   constructor(
     private fb: FormBuilder,
@@ -33,38 +45,7 @@ export class CreateHousingFormComponent {
     this.username = this.storageService.getUser().username;
   }
 
-  housingFormInit() {
-    this.housingForm = this.fb.group({
-      title: [
-        'Magnifique appartement situé en centre-ville',
-        Validators.required,
-      ],
-      address: ['14 RUE DE LA BEAUNE', Validators.required],
-      zipcode: ['93100', Validators.required],
-      city: ['Bordeaux'],
-      description: [
-        'Située à 10 minutes de Pont Audemer, cette maison contemporaine complètement rénovée en 2020 vous permettra de découvrir facilement la Normandie, elle est parfaitement adaptée pour 4 adultes et 2 enfants. En moins de 45 min vous pourrez visiter Le Marais Vernier, Rouen, Le Havre, Honfleur, Deauville mais aussi en 1 heure Etretat, Giverny, Caen…Vous pourrez profiter du jardin : Piscine chauffée à 28° en été, trampoline, cabane, balançoire et les animaux (poules et chats sur place)',
-        Validators.required,
-      ],
-      category: [CategoryEnum.appartement, Validators.required],
-      rooms: ['5', Validators.required],
-      bedrooms: ['5', Validators.required],
-      bathrooms: ['5', Validators.required],
-      furnished: [false, Validators.required],
-      living_space: ['5', Validators.required],
-      highlights: [[], Validators.required],
-      year_of_construction: ['WIFI', Validators.required],
-      housingCondition: [
-        HousingConditionEnum.good_condition,
-        Validators.required,
-      ],
-      price: ['1200', Validators.required],
-      user_id: this.user_id,
-      username: this.username,
-    });
-  }
-
-  ngOnInit(): void {
+  ngOnInit() {
     console.log(this.user_id);
     console.log(this.username);
     if (!this.isLoggedIn()) {
@@ -75,8 +56,113 @@ export class CreateHousingFormComponent {
     this.housingFormInit();
   }
 
+  private constructHousingObject() {
+    return {
+      address: this.housingForm.get('one.address')?.value,
+      zipcode: this.housingForm.get('one.zipcode')?.value,
+      city: this.housingForm.get('one.city')?.value,
+      title: this.housingForm.get('one.title')?.value,
+      description: this.housingForm.get('one.description')?.value,
+
+      category: this.housingForm.get('two.category')?.value,
+
+      rooms: this.housingForm.get('three.rooms')?.value,
+      bedrooms: this.housingForm.get('three.bedrooms')?.value,
+      bathrooms: this.housingForm.get('three.bathrooms')?.value,
+      furnished: this.housingForm.get('three.furnished')?.value,
+
+      living_space: this.housingForm.get('four.living_space')?.value,
+
+      highlights: this.housingForm.get('five.highlights')?.value,
+
+      year_of_construction: this.housingForm.get('six.year_of_construction')
+        ?.value,
+
+      housingCondition: this.housingForm.get('seven.housingCondition')?.value,
+
+      price: this.housingForm.get('eight.price')?.value,
+
+      user_id: this.user_id,
+      username: this.username,
+    };
+  }
+
+  housingFormInit() {
+    this.housingForm = this.fb.group({
+      one: this.fb.group({
+        title: ['', Validators.required],
+        address: ['', Validators.required],
+        zipcode: ['', Validators.required],
+        city: [''],
+        description: ['', Validators.required],
+      }),
+      two: this.fb.group({
+        category: [CategoryEnum.appartement, Validators.required],
+      }),
+      three: this.fb.group({
+        rooms: [this.roomsCounter, Validators.required],
+        bedrooms: [this.bedroomsCounter, Validators.required],
+        bathrooms: [this.bathroomsCounter, Validators.required],
+        furnished: [this.isFurnished, Validators.required],
+      }),
+      four: this.fb.group({
+        living_space: ['', Validators.required],
+      }),
+      five: this.fb.group({
+        highlights: [this.selectedHighlights, Validators.required],
+      }),
+      six: this.fb.group({
+        year_of_construction: ['', Validators.required],
+      }),
+      seven: this.fb.group({
+        housingCondition: [
+          HousingConditionEnum.good_condition,
+          Validators.required,
+        ],
+      }),
+      eight: this.fb.group({
+        price: ['', Validators.required],
+      }),
+    });
+  }
+
+  onSubmit() {
+    if (this.currentStep === 8) {
+      const newHousing = this.constructHousingObject();
+
+      const formData = new FormData();
+      formData.append('housing', JSON.stringify(newHousing));
+      this.selectedFiles.forEach((file) => {
+        formData.append('files', file);
+      });
+      this.housingService.createHousing(formData).subscribe(
+        (response) => {
+          console.log('Réponse du serveur :', response);
+        },
+        (error) => {
+          console.error('Erreur lors de la requête :', error);
+        },
+      );
+    }
+  }
+
   isLoggedIn(): boolean {
     return this.storageService.isLoggedIn();
+  }
+
+  formatHousingConditionLabel(condition: string): string {
+    switch (condition) {
+      case HousingConditionEnum.necessary_renovation:
+        return 'Rénovation nécessaire';
+      case HousingConditionEnum.good_condition:
+        return 'Bonne condition';
+      case HousingConditionEnum.perfect_condition:
+        return 'Excellente condition';
+      case HousingConditionEnum.new:
+        return 'Neuf';
+      default:
+        return condition;
+    }
   }
 
   onFileChanged(event: any) {
@@ -96,51 +182,77 @@ export class CreateHousingFormComponent {
       console.log('Fichiers sélectionnés:', this.selectedFiles);
     }
   }
-  private constructHousingObject() {
-    return {
-      address: this.housingForm.get('address')?.value,
-      zipcode: this.housingForm.get('zipcode')?.value,
-      city: this.housingForm.get('city')?.value,
-      title: this.housingForm.get('title')?.value,
-      description: this.housingForm.get('description')?.value,
 
-      category: this.housingForm.get('category')?.value,
-
-      rooms: this.housingForm.get('rooms')?.value,
-      bedrooms: this.housingForm.get('bedrooms')?.value,
-      bathrooms: this.housingForm.get('bathrooms')?.value,
-      furnished: this.housingForm.get('furnished')?.value,
-
-      living_space: this.housingForm.get('living_space')?.value,
-
-      highlights: this.housingForm.get('highlights')?.value,
-
-      year_of_construction: this.housingForm.get('year_of_construction')?.value,
-
-      housingCondition: this.housingForm.get('housingCondition')?.value,
-
-      price: this.housingForm.get('price')?.value,
-
-      user_id: this.user_id,
-      username: this.username,
-    };
+  deleteSelectedImage(index: number) {
+    this.selectedFilesURL.splice(index, 1);
+    this.selectedFiles.splice(index, 1);
   }
 
-  onSubmit() {
-    const newHousing = this.constructHousingObject();
+  updateSelected(highlight: HighLights): void {
+    const index = this.selectedHighlights.indexOf(highlight.title);
+    if (index === -1) {
+      this.selectedHighlights.push(highlight.title);
+    } else {
+      this.selectedHighlights.splice(index, 1);
+    }
+    console.log('Éléments sélectionnés:', this.selectedHighlights);
+  }
 
-    const formData = new FormData();
-    formData.append('housing', JSON.stringify(newHousing));
-    this.selectedFiles.forEach((file) => {
-      formData.append('files', file);
-    });
-    this.housingService.createHousing(formData).subscribe(
-      (response) => {
-        console.log('Réponse du serveur :', response);
-      },
-      (error) => {
-        console.error('Erreur lors de la requête :', error);
-      },
-    );
+  prevStep() {
+    this.currentStep--;
+  }
+  nextStep() {
+    this.currentStep++;
+  }
+
+  roomsIncrement() {
+    this.roomsCounter++;
+    this.housingForm.get('three.rooms')?.setValue(this.roomsCounter);
+    console.log(this.roomsCounter);
+  }
+  roomsDecrement() {
+    if (this.roomsCounter > 1) {
+      this.roomsCounter--;
+      this.housingForm.get('three.rooms')?.setValue(this.roomsCounter);
+      console.log(this.roomsCounter);
+    }
+  }
+  bedroomsIncrement() {
+    this.bedroomsCounter++;
+    this.housingForm.get('three.bedrooms')?.setValue(this.bedroomsCounter);
+    console.log(this.bedroomsCounter);
+  }
+
+  bedroomsDecrement() {
+    if (this.bedroomsCounter > 1) {
+      this.bedroomsCounter--;
+      this.housingForm.get('three.bedrooms')?.setValue(this.bedroomsCounter);
+      console.log(this.bedroomsCounter);
+    }
+  }
+  bathroomIncrement() {
+    this.bathroomsCounter++;
+    this.housingForm.get('three.bathrooms')?.setValue(this.bathroomsCounter);
+    console.log(this.bathroomsCounter);
+  }
+  bathroomDecrement() {
+    if (this.bathroomsCounter > 1) {
+      this.bathroomsCounter--;
+      this.housingForm.get('three.bathrooms')?.setValue(this.bathroomsCounter);
+      console.log(this.bathroomsCounter);
+    }
+  }
+  categoryValue(category: string) {
+    if (this.housingForm) {
+      this.housingForm.get('two.category')?.setValue(category);
+      this.currentStep++;
+    }
+  }
+  housingConditionValue(condition: string) {
+    this.selectedCondition = condition;
+    console.log(this.selectedCondition);
+  }
+  setFurnished(value: boolean) {
+    this.housingForm.get('three.furnished')?.setValue(value);
   }
 }
