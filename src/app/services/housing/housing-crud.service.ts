@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, throwError } from 'rxjs';
+import { IHousing } from '../../../interfaces/IHousing';
 
 @Injectable({
   providedIn: 'root',
@@ -18,5 +19,9 @@ export class HousingCRUDService {
         return of(null);
       }),
     );
+  }
+
+  getHousingList(): Observable<IHousing[]> {
+    return this.httpClient.get<IHousing[]>(this.apiUrl);
   }
 }
