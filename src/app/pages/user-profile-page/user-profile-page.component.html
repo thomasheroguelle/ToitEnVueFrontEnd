@@ -1,1 +1,34 @@
-<p>user-profile-page works!</p>
+<ng-container *ngIf="isLoggedIn(); else loginPrompt">
+  <div class="profile-card">
+    <p class="user-profile">Mon profil</p>
+
+    <div class="profile-header">
+      <img src="assets/img/user-profile/Guy.png" alt="Photo de profil" />
+
+      <button
+        (click)="logout()"
+        mat-flat-button
+        color="primary"
+        class="large-btn"
+      >
+        Déconnexion
+      </button>
+    </div>
+
+    <div class="profile-details">
+      <div class="detail">
+        <label>Nom d'utilisateur :</label>
+        <p>{{ userName.username }}</p>
+      </div>
+      <div class="detail">
+        <label>Email :</label>
+        <p>{{ userName.email }}</p>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #loginPrompt>
+  <div class="flex-center">
+    <p>Veuillez vous connecter pour accéder au formulaire.</p>
+  </div>
+</ng-template>
