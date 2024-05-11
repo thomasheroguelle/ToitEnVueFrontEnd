@@ -1,6 +1,7 @@
 import { IFile } from './IFile';
 
 export interface IHousing {
+  housing_id: number;
   title: string;
   address: string;
   city: string;
