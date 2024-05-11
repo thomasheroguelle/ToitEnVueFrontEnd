@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" [routerLink]="'/housings/' + house.housing_id">
   <div class="card-img-holder">
     <img
       [src]="'http://localhost:8091/api/v1/files/' + house.files[0].file_name"

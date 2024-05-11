@@ -24,4 +24,8 @@ export class HousingCRUDService {
   getHousingList(): Observable<IHousing[]> {
     return this.httpClient.get<IHousing[]>(this.apiUrl);
   }
+
+  getHousingById(id: number): Observable<IHousing> {
+    return this.httpClient.get<IHousing>(`${this.apiUrl}/${id}`);
+  }
 }

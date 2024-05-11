@@ -10,6 +10,7 @@ import { PrivacyPolicyPageComponent } from './pages/privacy-policy-page/privacy-
 import { TermsOfUsePageComponent } from './pages/terms-of-use-page/terms-of-use-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { UserProfilePageComponent } from './pages/user-profile-page/user-profile-page.component';
+import { HousingDetailPageComponent } from './pages/housing-detail-page/housing-detail-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -30,6 +31,8 @@ const routes: Routes = [
     path: 'profil',
     component: UserProfilePageComponent,
   },
+
+  { path: 'housings/:id', component: HousingDetailPageComponent },
 
   { path: '**', component: ErrorPageComponent },
 ];
