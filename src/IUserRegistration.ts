@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IUserRegistration {
   username: string;
   email: string;
   password: string;

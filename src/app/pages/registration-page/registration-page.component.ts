@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/authentication/auth.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
-import { IUser } from '../../../IUser';
+import { IUserRegistration } from '../../../IUserRegistration';
 
 @Component({
   selector: 'app-registration-page',
@@ -10,7 +10,7 @@ import { IUser } from '../../../IUser';
   styleUrl: './registration-page.component.css',
 })
 export class RegistrationPageComponent {
-  form: IUser = {
+  form: IUserRegistration = {
     username: '',
     email: '',
     password: '',
