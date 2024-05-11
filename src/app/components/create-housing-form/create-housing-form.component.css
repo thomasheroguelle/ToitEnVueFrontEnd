@@ -203,13 +203,6 @@ button {
   margin-bottom: 10px;
 }
 
-.delete-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  color: var(--black-color);
-}
-
 /* DISPLAY NONE  */
 #maison-category[type="radio"],
 #appartement-category[type="radio"],
@@ -233,10 +226,10 @@ button {
     display: block;
   }
   .highlight-button {
-    width: auto;
-    height: auto;
     padding: 15px;
     border-radius: 5px;
+    width: 45%;
+    height: 80px;
   }
   .section-container-margin {
     width: 100%;
@@ -244,11 +237,6 @@ button {
 
   .input-container {
     margin-top: 1rem;
-  }
-
-  .highlight-button {
-    width: 45%;
-    height: 80px;
   }
 
   .selected-image {
