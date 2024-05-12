@@ -11,6 +11,7 @@ import { TermsOfUsePageComponent } from './pages/terms-of-use-page/terms-of-use-
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { UserProfilePageComponent } from './pages/user-profile-page/user-profile-page.component';
 import { HousingDetailPageComponent } from './pages/housing-detail-page/housing-detail-page.component';
+
 import { SuccessPageComponent } from './pages/success-page/success-page.component';
 
 const routes: Routes = [

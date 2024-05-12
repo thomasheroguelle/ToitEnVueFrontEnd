@@ -1,0 +1,96 @@
+/* GENERAL  */
+.wrapper-container {
+  align-items: center;
+  margin-top: 2vw;
+}
+p,
+li {
+  font-size: 16px;
+}
+
+.product-price {
+  font-size: 25px;
+  font-weight: 600;
+  margin: 10px 0 7px 0;
+  color: var(--blue-color);
+}
+
+.product-address {
+  font-weight: 500;
+}
+
+.highlights-container ul {
+  padding-inline-start: 20px;
+}
+
+.details-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.details-list li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.highlights-container li {
+  list-style-type: disc;
+}
+
+/* Icônes */
+i,
+li {
+  margin-right: 8px;
+}
+
+/* Card */
+.content-product-card {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 53%;
+}
+
+/* display-flex  */
+.display-flex {
+  align-items: center;
+  padding: 0;
+}
+
+/* Images */
+.main-image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.sub-images {
+  width: auto;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* Details */
+.details {
+  padding: 20px;
+}
+
+@media (max-width: 1350px) {
+  .content-product-card {
+    max-width: 100%;
+  }
+}
+
+/*   mobile */
+@media only screen and (max-width: 1338px) {
+  app-booking {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .wrapper-container {
+    flex-direction: column;
+  }
+}

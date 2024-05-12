@@ -1,1 +1,64 @@
-<p>get-housing-by-id works!</p>
+<div class="wrapper-container flex-evenly">
+  <div class="content-product-card" *ngIf="housing">
+    <img
+      *ngFor="let file of housing.files; let i = index"
+      [src]="'http://localhost:8091/api/v1/files/' + file.file_name"
+      alt="Image"
+      class="main-image"
+      [class.sub-images]="i !== 0"
+    />
+
+    <div class="details">
+      <p class="product-price">{{ housing.price }} €/mois</p>
+      <div class="display-flex">
+        <i class="fa-solid fa-location-dot"></i>
+        <p class="product-address">
+          {{ housing.address }} , {{ housing.city }} , {{ housing.zipcode }}
+        </p>
+      </div>
+
+      <ul class="details-list display-flex">
+        <li>
+          <i class="fa-solid fa-bed"></i>
+          {{ housing.bedrooms }} lits
+        </li>
+        <li>
+          <i class="fa-solid fa-sink"></i>
+          {{ housing.bathrooms }} salles de bain
+        </li>
+
+        <li>
+          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+          {{ housing.living_space }} m²
+        </li>
+      </ul>
+
+      <mat-divider></mat-divider>
+
+      <h4>Description</h4>
+      <p>{{ housing.description }}</p>
+
+      <h4>Caractéristiques du bien</h4>
+      <div
+        class="highlights-container"
+        *ngFor="let highlight of housing.highlights"
+      >
+        <ul>
+          <li>{{ highlight }}</li>
+        </ul>
+      </div>
+
+      <h4>Prix</h4>
+
+      <p>{{ housing.price }} € par mois</p>
+
+      <h4>Détails</h4>
+      <p>Nombre de pièces {{ housing.rooms }}</p>
+
+      <p>Type de bien : {{ returnHousingCategory() }}</p>
+      <p>Etat : {{ getConditionLabel() }}</p>
+      <p>{{ returnIsFurnished() }}</p>
+      <p>Date de création : {{ housing.year_of_construction }}</p>
+    </div>
+  </div>
+</div>
