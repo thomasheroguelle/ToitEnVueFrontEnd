@@ -46,6 +46,8 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from '../helpers/http.interceptor';
 import { HttpClientModule } from '@angular/common/http';
+import { BookingDialogComponent } from './components/booking-dialog/booking-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     ErrorPageComponent,
+    BookingDialogComponent,
   ],
   imports: [
     BrowserModule,
