@@ -138,6 +138,11 @@ export class CreateHousingFormComponent {
       this.housingService.createHousing(formData).subscribe(
         (response) => {
           console.log('Réponse du serveur :', response);
+
+          const newHousingId = response.housing_id;
+          this.housingService.setNewHousingId(newHousingId);
+
+          this.router.navigate(['/success-page', newHousingId]);
         },
         (error) => {
           console.error('Erreur lors de la requête :', error);

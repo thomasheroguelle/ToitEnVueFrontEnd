@@ -6,7 +6,7 @@
     enctype="multipart/form-data"
   >
     <!-- FIRST STEP  -->
-    <section *ngIf="currentStep === 3" formGroupName="one">
+    <section *ngIf="currentStep === 1" formGroupName="one">
       <div class="section-container-margin">
         <h5>C'est parti !</h5>
         <h6>Quelques informations sur votre bien</h6>
@@ -128,7 +128,7 @@
       </div>
     </section>
     <!-- Troisième étape -->
-    <section *ngIf="currentStep === 1" formGroupName="three">
+    <section *ngIf="currentStep === 3" formGroupName="three">
       <div class="section-container-margin">
         <h5>Agencement</h5>
         <h6>Dites nous en plus</h6>
