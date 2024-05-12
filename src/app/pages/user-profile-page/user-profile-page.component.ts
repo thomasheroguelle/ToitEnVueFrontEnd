@@ -9,7 +9,14 @@ import { Router } from '@angular/router';
   styleUrl: './user-profile-page.component.css',
 })
 export class UserProfilePageComponent {
+  constructor(
+    private storageService: StorageService,
+    private authService: AuthService,
+    private router: Router,
+  ) {}
+
   userName = this.storageService.getUser();
+  
   ngOnInit() {
     if (!this.isLoggedIn()) {
       alert('Veuillez vous connecter pour accéder au formulaire');
@@ -22,12 +29,6 @@ export class UserProfilePageComponent {
   isLoggedIn(): boolean {
     return this.storageService.isLoggedIn();
   }
-
-  constructor(
-    private storageService: StorageService,
-    private authService: AuthService,
-    private router: Router,
-  ) {}
 
   logout(): void {
     this.authService.logout().subscribe({

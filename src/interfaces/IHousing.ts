@@ -20,6 +20,12 @@ export interface IHousing {
   user_id: number;
   username: string;
   files: IFile[];
+  bookingDate: BookingDate[];
+}
+
+export interface BookingDate {
+  beginningDate: Date;
+  endDate: Date;
 }
 
 export enum CategoryEnum {

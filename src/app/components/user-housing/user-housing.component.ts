@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { UserHousingService } from '../../services/user-housing.service';
 import { StorageService } from '../../services/storage/storage.service';
-import { HousingOwner } from '../../../HousingOwner';
 import { Router } from '@angular/router';
+import { IHousing } from '../../../interfaces/IHousing';
 
 @Component({
   selector: 'app-user-housing',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UserHousingComponent {
   userId = this.storageService.getUser().id;
-  housesList: HousingOwner[] = [];
+  housesList: IHousing[] = [];
 
   constructor(
     private userOwner: UserHousingService,
