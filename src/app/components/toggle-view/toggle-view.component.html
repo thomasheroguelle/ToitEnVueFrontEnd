@@ -1,1 +1,9 @@
-<p>toggle-view works!</p>
+<button *ngIf="isOnProductsPage()" routerLink="/map">
+  <p class="small-text">Afficher la Carte</p>
+  <i class="fa-solid fa-location-dot"></i>
+</button>
+
+<button *ngIf="isOnMapPage()" routerLink="/housings">
+  <p class="small-text">Afficher la Liste</p>
+  <i class="fa-solid fa-list"></i>
+</button>

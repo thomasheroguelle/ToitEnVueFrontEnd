@@ -1,0 +1,7 @@
+app-toggle-view {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
