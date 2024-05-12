@@ -1,6 +1,23 @@
-<div class="product-list">
-  <app-housing-card
-    *ngFor="let house of housesList"
-    [house]="house"
-  ></app-housing-card>
+<div class="container">
+  <app-filter-by-housing (filterChange)="filterResults($event)">
+  </app-filter-by-housing>
+
+  <div
+    *ngIf="filteredLocationList.length > 0; else noResults"
+    class="product-list"
+  >
+    <app-housing-card
+      *ngFor="let house of filteredLocationList"
+      [house]="house"
+    ></app-housing-card>
+  </div>
+
+  <ng-template #noResults>
+    <div class="product-list">
+      <app-housing-card
+        *ngFor="let house of housesList"
+        [house]="house"
+      ></app-housing-card>
+    </div>
+  </ng-template>
 </div>

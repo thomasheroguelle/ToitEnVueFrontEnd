@@ -10,6 +10,7 @@ import { HousingCRUDService } from '../../services/housing/housing-crud.service'
 })
 export class HousingListComponent {
   housesList: IHousing[] = [];
+  filteredLocationList: IHousing[] = [];
 
   constructor(private allHousingList: HousingCRUDService) {}
 
@@ -28,5 +29,16 @@ export class HousingListComponent {
       },
     );
     return this.allHousingList.getHousingList();
+  }
+
+  filterResults(text: string) {
+    this.filteredLocationList = text.trim()
+      ? this.housesList.filter((housingLocation) =>
+          housingLocation.city.toLowerCase().includes(text.toLowerCase()),
+        )
+      : this.housesList;
+    if (this.filteredLocationList.length === 0) {
+      alert('Aucune recherche associée');
+    }
   }
 }
