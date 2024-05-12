@@ -1,0 +1,10 @@
+.goback {
+  cursor: pointer;
+  background-color: var(--white-color);
+  border: none;
+  margin: 2vw 2vw;
+}
+
+i {
+  margin-right: 8px;
+}
