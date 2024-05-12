@@ -29,7 +29,6 @@ export class CreateHousingFormComponent {
   bedroomsCounter = 1;
   bathroomsCounter = 1;
   currentStep = 1;
-  isFurnished: boolean = true;
   selectedHighlights: string[] = [];
   selectedCondition: string = HousingConditionEnum.good_condition;
   typeOfHousing: string[] = [CategoryEnum.appartement, CategoryEnum.maison];
@@ -71,7 +70,6 @@ export class CreateHousingFormComponent {
       rooms: this.housingForm.get('three.rooms')?.value,
       bedrooms: this.housingForm.get('three.bedrooms')?.value,
       bathrooms: this.housingForm.get('three.bathrooms')?.value,
-      furnished: this.housingForm.get('three.furnished')?.value,
 
       living_space: this.housingForm.get('four.living_space')?.value,
 
@@ -105,7 +103,6 @@ export class CreateHousingFormComponent {
         rooms: [this.roomsCounter, Validators.required],
         bedrooms: [this.bedroomsCounter, Validators.required],
         bathrooms: [this.bathroomsCounter, Validators.required],
-        furnished: [this.isFurnished, Validators.required],
       }),
       four: this.fb.group({
         living_space: ['', Validators.required],
@@ -149,7 +146,7 @@ export class CreateHousingFormComponent {
           const newHousingId = response.housing_id;
           this.housingService.setNewHousingId(newHousingId);
 
-          this.router.navigate(['/success', newHousingId]);
+          this.router.navigate(['/success-page', newHousingId]);
         },
         (error) => {
           console.error('Erreur lors de la requête :', error);
@@ -263,8 +260,5 @@ export class CreateHousingFormComponent {
   housingConditionValue(condition: string) {
     this.selectedCondition = condition;
     console.log(this.selectedCondition);
-  }
-  setFurnished(value: boolean) {
-    this.housingForm.get('three.furnished')?.setValue(value);
   }
 }

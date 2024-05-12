@@ -6,8 +6,13 @@ import { IAdressData } from '../../interfaces/IAdressData';
   providedIn: 'root',
 })
 export class GeolocalisationService {
-  addressData: IAdressData[] = [];
-
+  addressData: {
+    address: string;
+    zipcode: string;
+    city: string;
+    latitude: number;
+    longitude: number;
+  }[] = [];
   constructor(private openStreetMap: OpenstreetmapService) {}
 
   getAddressData(address: string, city: string, zipcode: string) {
@@ -26,8 +31,6 @@ export class GeolocalisationService {
             longitude: parseFloat(firstResult.lon),
           };
           this.addressData = [newAddressData];
-          console.log(this.addressData);
-          console.log(zipcode);
 
           this.openStreetMap.getCoordinates(
             this.addressData[0].latitude.toString(),

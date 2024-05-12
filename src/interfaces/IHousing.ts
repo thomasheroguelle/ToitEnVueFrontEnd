@@ -12,7 +12,6 @@ export interface IHousing {
   rooms: number;
   bedrooms: number;
   bathrooms: number;
-  furnished: boolean;
   living_space: number;
   highlights: HighLights[];
   year_of_construction: number;

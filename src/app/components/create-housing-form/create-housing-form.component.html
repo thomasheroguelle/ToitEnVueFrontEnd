@@ -201,45 +201,6 @@
         </div>
 
         <div class="input-container margin">
-          <h6>Type de bien</h6>
-          <div class="flex-center">
-            <button
-              class="isFurnished"
-              [ngClass]="{
-                'selected-furnished':
-                  housingForm.get('three.furnished')?.value === true,
-                'not-selected-furnished':
-                  housingForm.get('three.furnished')?.value === false
-              }"
-              (click)="setFurnished(true)"
-              onkeydown="setFurnished(true)"
-            >
-              <img
-                src="assets/img/housing-form/furnished/isFurnished.png"
-                alt="isFurnished"
-              />
-              <label for="furnished"><b>Meublé</b></label>
-            </button>
-            <button
-              class="isFurnished"
-              [ngClass]="{
-                'selected-furnished':
-                  housingForm.get('three.furnished')?.value === false,
-                'not-selected-furnished':
-                  housingForm.get('three.furnished')?.value === true
-              }"
-              (click)="setFurnished(false)"
-            >
-              <img
-                src="assets/img/housing-form/furnished/isNotFurnished.png"
-                alt="is not Furnished"
-              />
-              <label for="isNotFurnished"><b>Non Meublé</b></label>
-            </button>
-          </div>
-        </div>
-
-        <div class="input-container margin">
           <button
             color="primary"
             mat-flat-button
