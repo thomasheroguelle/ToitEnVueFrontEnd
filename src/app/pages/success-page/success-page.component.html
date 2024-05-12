@@ -1,1 +1,16 @@
-<p>success-page works!</p>
+<div class="image-container">
+  <div class="overlay-text flex-column">
+    <h4>Magnifique !</h4>
+    <p>
+      Annonce créée! Votre coin de paradis attend avec hâte ses prochains
+      voyageurs! 🎉
+    </p>
+    <button
+      mat-flat-button
+      color="primary"
+      [routerLink]="'/housings/' + newHousingId"
+    >
+      Voir mon annonce
+    </button>
+  </div>
+</div>

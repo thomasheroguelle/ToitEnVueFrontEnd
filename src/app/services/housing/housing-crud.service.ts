@@ -8,6 +8,7 @@ import { IHousing } from '../../../interfaces/IHousing';
 })
 export class HousingCRUDService {
   private apiUrl = 'http://localhost:8091/api/v1/housing';
+  newHousingId!: number;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -27,5 +28,9 @@ export class HousingCRUDService {
 
   getHousingById(id: number): Observable<IHousing> {
     return this.httpClient.get<IHousing>(`${this.apiUrl}/${id}`);
+  }
+
+  setNewHousingId(id: number) {
+    this.newHousingId = id;
   }
 }
