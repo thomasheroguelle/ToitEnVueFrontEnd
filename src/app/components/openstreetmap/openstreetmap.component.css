@@ -1,0 +1,13 @@
+.content-wrapper-margin {
+  margin-top: 15px;
+}
+#map {
+  height: 90vh;
+  width: 100vw;
+}
+
+@media screen and (max-width: 930px) {
+  .content-wrapper-margin {
+    margin-left: 0;
+  }
+}

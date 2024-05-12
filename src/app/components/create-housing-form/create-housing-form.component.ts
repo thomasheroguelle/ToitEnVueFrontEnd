@@ -9,6 +9,7 @@ import {
 } from '../../../interfaces/IHousing';
 import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
+import { GeolocalisationService } from '../../services/geolocalisation.service';
 
 @Component({
   selector: 'app-create-housing-form',
@@ -40,6 +41,7 @@ export class CreateHousingFormComponent {
     private housingService: HousingCRUDService,
     private storageService: StorageService,
     private router: Router,
+    public geolocalisation: GeolocalisationService,
   ) {
     this.user_id = this.storageService.getUser().id;
     this.username = this.storageService.getUser().username;
@@ -128,6 +130,11 @@ export class CreateHousingFormComponent {
 
   onSubmit() {
     if (this.currentStep === 8) {
+      this.geolocalisation.getAddressData(
+        this.housingForm.get('one.address')?.value,
+        this.housingForm.get('one.city')?.value,
+        this.housingForm.get('one.zipcode')?.value,
+      );
       const newHousing = this.constructHousingObject();
 
       const formData = new FormData();
@@ -142,7 +149,7 @@ export class CreateHousingFormComponent {
           const newHousingId = response.housing_id;
           this.housingService.setNewHousingId(newHousingId);
 
-          this.router.navigate(['/success-page', newHousingId]);
+          this.router.navigate(['/success', newHousingId]);
         },
         (error) => {
           console.error('Erreur lors de la requête :', error);

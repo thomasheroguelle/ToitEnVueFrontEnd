@@ -13,6 +13,7 @@ import { UserProfilePageComponent } from './pages/user-profile-page/user-profile
 import { HousingDetailPageComponent } from './pages/housing-detail-page/housing-detail-page.component';
 
 import { SuccessPageComponent } from './pages/success-page/success-page.component';
+import { MapPageComponent } from './pages/map-page/map-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -37,6 +38,8 @@ const routes: Routes = [
   { path: 'housings/:id', component: HousingDetailPageComponent },
 
   { path: 'success-page/:id', component: SuccessPageComponent },
+
+  { path: 'map', component: MapPageComponent },
 
   { path: '**', component: ErrorPageComponent },
 ];
