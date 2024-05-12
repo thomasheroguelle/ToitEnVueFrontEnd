@@ -14,7 +14,6 @@ import { HousingDetailPageComponent } from './pages/housing-detail-page/housing-
 
 import { SuccessPageComponent } from './pages/success-page/success-page.component';
 
-
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'housings', component: HousingListPageComponent },
@@ -37,9 +36,7 @@ const routes: Routes = [
 
   { path: 'housings/:id', component: HousingDetailPageComponent },
 
-
   { path: 'success-page/:id', component: SuccessPageComponent },
-
 
   { path: '**', component: ErrorPageComponent },
 ];
