@@ -16,7 +16,6 @@ export class UserProfilePageComponent {
   ) {}
 
   userName = this.storageService.getUser();
-  
   ngOnInit() {
     if (!this.isLoggedIn()) {
       alert('Veuillez vous connecter pour accéder au formulaire');

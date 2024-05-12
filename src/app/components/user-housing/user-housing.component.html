@@ -22,6 +22,15 @@
         </li>
       </ul>
 
+      <button
+        class="medium-btn"
+        color="warn"
+        mat-flat-button
+        (click)="deleteHousing(house.housing_id)"
+      >
+        Supprimer l'annonce
+      </button>
+
       <ng-template #noBooking>
         <p>Pas encore de réservation</p>
       </ng-template>

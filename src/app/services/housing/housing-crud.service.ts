@@ -30,6 +30,14 @@ export class HousingCRUDService {
     return this.httpClient.get<IHousing>(`${this.apiUrl}/${id}`);
   }
 
+  deleteHousing(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => {
+        return throwError(error);
+      }),
+    );
+  }
+
   setNewHousingId(id: number) {
     this.newHousingId = id;
   }
