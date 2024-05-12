@@ -37,6 +37,7 @@ export class BookingComponent {
     this.getOwnerUserName();
     console.log(this.currentDate);
     console.log(this.housingId);
+    this.getReservations();
   }
 
   makeBooking() {
@@ -51,6 +52,17 @@ export class BookingComponent {
           console.error(error);
         },
       );
+  }
+
+  getReservations() {
+    this.bookingService.getBookingsByHousingId(this.housingId).subscribe(
+      (data: any) => {
+        console.log('Dates réservées', data);
+      },
+      (error) => {
+        console.error(error);
+      },
+    );
   }
 
   getCurrentDate(): string {

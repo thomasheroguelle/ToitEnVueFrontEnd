@@ -23,6 +23,11 @@ export class BookingService {
     return this.http.post(url, {}).pipe(catchError(this.handleError));
   }
 
+  getBookingsByHousingId(housingId: number): Observable<any> {
+    const url = `${this.apiUrl}/details/${housingId}`;
+    return this.http.get(url);
+  }
+
   private handleError(error: HttpErrorResponse): Observable<any> {
     if (error.status === 401) {
       alert('Vous devez être connecté pour réserver une location');
