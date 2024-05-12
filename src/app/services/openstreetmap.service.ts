@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import L from 'leaflet';
-
+import Geocoder from 'leaflet-control-geocoder';
 @Injectable({
   providedIn: 'root',
 })
@@ -33,6 +33,8 @@ export class OpenstreetmapService {
       this.map,
     );
 
+    this.searchControl();
+
     const coordinatesArray = JSON.parse(
       localStorage.getItem('coordinatesArray') ?? '[]',
     );
@@ -59,5 +61,50 @@ export class OpenstreetmapService {
         popupAnchor: [1, -34],
       }),
     });
+  }
+
+  addCircle(latlng: L.LatLng) {
+    L.circle(latlng, {
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.5,
+      radius: 500,
+    }).addTo(this.map);
+  }
+
+  searchControl() {
+    if (this.map) {
+      const geocoderControl = new Geocoder();
+
+      geocoderControl.addTo(this.map);
+
+      geocoderControl.on('markgeocode', (e: any) => {
+        this.map.eachLayer((layer) => {
+          if (layer instanceof L.Marker && !this.isSavedHousingMarker(layer)) {
+            this.map.removeLayer(layer);
+          }
+        });
+
+        const latlng = e.geocode.center;
+        this.addCircle(latlng);
+
+        console.log(e);
+      });
+    }
+  }
+
+  isSavedHousingMarker(marker: L.Marker): boolean {
+    const coordinatesArray = JSON.parse(
+      localStorage.getItem('coordinatesArray') || '[]',
+    );
+    for (const coord of coordinatesArray) {
+      if (
+        marker.getLatLng().lat === parseFloat(coord.latitude) &&
+        marker.getLatLng().lng === parseFloat(coord.longitude)
+      ) {
+        return true;
+      }
+    }
+    return false;
   }
 }
