@@ -1,0 +1,53 @@
+<ng-template #bookingContent>
+  <div class="container">
+    <i
+      class="fas fa-times close-icon"
+      (click)="closePopup()"
+      (keydown)="onKeyDown($event)"
+    ></i>
+
+    <div>
+      <p class="user-owner">
+        <b> Annonce de </b>
+        <span>{{ data.bookingComponent.ownerUsername }}</span>
+      </p>
+
+      <label for="beginningDate">Date de début</label>
+      <input
+        [min]="data.bookingComponent.currentDate"
+        type="date"
+        id="beginningDate"
+        [(ngModel)]="data.bookingComponent.beginningDate"
+      />
+    </div>
+    <div>
+      <label for="endDate">Date de fin</label>
+      <input
+        [min]="data.bookingComponent.beginningDate"
+        type="date"
+        id="endDate"
+        [(ngModel)]="data.bookingComponent.endDate"
+      />
+    </div>
+    <button
+      class="medium-btn"
+      color="primary"
+      mat-flat-button
+      [disabled]="
+        !data.bookingComponent.beginningDate || !data.bookingComponent.endDate
+      "
+      (click)="data.bookingComponent.makeBooking()"
+    >
+      Valider
+    </button>
+  </div>
+
+  @if (data.bookingComponent.isBooked) {
+    <p>
+      Réservation validée du {{ data.bookingComponent.beginningDate }} au
+      {{ data.bookingComponent.endDate }}
+    </p>
+  }
+</ng-template>
+
+<ng-container *ngTemplateOutlet="bookingContent"></ng-container>

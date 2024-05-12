@@ -1,0 +1,91 @@
+/* GENERAL  */
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.user-owner {
+  font-size: 22px;
+}
+
+p {
+  font-size: 14px;
+  margin-bottom: 1em;
+}
+
+mat-form-field {
+  display: flex;
+}
+.disabled-date {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* CONTAINERS  */
+.container {
+  width: 350px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+div {
+  text-align: center;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-input);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+.medium-btn {
+  color: var(--white-color);
+  margin-top: 2vw;
+}
+
+button {
+  width: 100%;
+}
+
+button:hover {
+  opacity: 90%;
+}
+button:disabled {
+  opacity: 50%;
+}
+input:disabled {
+  opacity: 50%;
+}
+.booking-container.mobile {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--white-color);
+  padding: 15px;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+}
+
+/*   PC */
+@media only screen and (min-width: 768px) {
+  .booking-container.mobile {
+    display: none;
+  }
+}
+
+/*   mobile */
+@media only screen and (max-width: 1338px) {
+  .booking-container.desktop {
+    display: none;
+  }
+  .booking-container.mobile {
+    display: block;
+  }
+}

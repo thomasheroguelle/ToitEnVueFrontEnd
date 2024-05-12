@@ -1,1 +1,45 @@
-<p>booking works!</p>
+<div class="booking-container desktop">
+  <div class="container">
+    <div>
+      <p class="user-owner">
+        <b> Annonce de </b> <span>{{ ownerUsername }}</span>
+      </p>
+      <label for="beginningDate">Date de début</label>
+      <input
+        [min]="currentDate"
+        type="date"
+        id="beginningDate"
+        [(ngModel)]="beginningDate"
+      />
+    </div>
+    <div>
+      <label for="endDate">Date de fin</label>
+      <input
+        min="{{ beginningDate }}"
+        type="date"
+        id="endDate"
+        [(ngModel)]="endDate"
+      />
+    </div>
+    <button
+      class="medium-btn"
+      color="primary"
+      mat-flat-button
+      [disabled]="!this.beginningDate || !this.endDate"
+      (click)="makeBooking()"
+    >
+      Réserver
+    </button>
+  </div>
+</div>
+
+<div class="booking-container mobile">
+  <button
+    class="medium-btn"
+    color="primary"
+    mat-flat-button
+    (click)="openDialog()"
+  >
+    Réserver
+  </button>
+</div>
