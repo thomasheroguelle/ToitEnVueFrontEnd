@@ -3,6 +3,7 @@ import { UserHousingService } from '../../services/user-housing.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
 import { IHousing } from '../../../interfaces/IHousing';
+import { HousingCRUDService } from '../../services/housing/housing-crud.service';
 
 @Component({
   selector: 'app-user-housing',
@@ -15,6 +16,7 @@ export class UserHousingComponent {
 
   constructor(
     private userOwner: UserHousingService,
+    private housingCrud: HousingCRUDService,
     private storageService: StorageService,
     private route: Router,
   ) {}
@@ -43,5 +45,28 @@ export class UserHousingComponent {
         console.error(error, 'error');
       },
     );
+  }
+
+  deleteHousing(id: number): void {
+    this.housingCrud.deleteHousing(id).subscribe(
+      (response) => {
+        alert('Annonce supprimée avec succès !');
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Une erreur est survenue : ', error);
+        if (error.error) {
+          this.showAlert(error.error);
+          console.log(error.error);
+        } else {
+          this.showAlert('Une erreur est survenue.');
+        }
+      },
+    );
+  }
+
+  showAlert(errorMessage: string): void {
+    alert(errorMessage);
+    console.log(errorMessage);
   }
 }
