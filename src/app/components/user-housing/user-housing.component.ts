@@ -4,6 +4,7 @@ import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
 import { IHousing } from '../../../interfaces/IHousing';
 import { HousingCRUDService } from '../../services/housing/housing-crud.service';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'app-user-housing',
@@ -19,6 +20,7 @@ export class UserHousingComponent {
     private housingCrud: HousingCRUDService,
     private storageService: StorageService,
     private route: Router,
+    private bookingService: BookingService,
   ) {}
 
   isLoggedIn(): boolean {

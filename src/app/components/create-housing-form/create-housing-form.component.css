@@ -3,6 +3,11 @@ span {
   font-family: "Roboto", sans-serif;
 }
 
+h5 {
+  color: var(--blue-color);
+  margin: 1vw 0 1vw 0;
+}
+
 label {
   margin-bottom: 5px;
 }
@@ -88,35 +93,10 @@ button {
   align-items: center;
 }
 
-.selected-furnished {
-  border: 2px solid var(--blue-color);
-}
-
-.not-selected-furnished {
-  border: 2px solid var(--not-selected-btn);
-}
-
-.isFurnished {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  border-radius: 10px;
-  width: 100%;
-  background-color: var(--white-color);
-}
-
-.isFurnished img {
-  width: 100px;
-  height: auto;
-}
-
 .flex-center {
   gap: 15px;
   width: 100%;
 }
-/* FORM4 */
 
 /* FORM5 */
 .highlights-container {
@@ -216,12 +196,6 @@ button {
 
 /* RESPONSIVE  */
 @media screen and (max-width: 620px) {
-  .isFurnished {
-    width: 100%;
-    padding: 7px;
-    margin-top: 10px;
-  }
-
   .input-container .flex-center {
     display: block;
   }

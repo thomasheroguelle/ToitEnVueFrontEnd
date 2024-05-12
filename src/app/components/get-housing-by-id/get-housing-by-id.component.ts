@@ -54,14 +54,6 @@ export class GetHousingByIdComponent {
     }
   }
 
-  returnIsFurnished() {
-    if (this.housing.furnished) {
-      return 'Meublé ✅';
-    } else {
-      return 'Non meublé ❌';
-    }
-  }
-
   returnHousingCategory() {
     switch (this.housing.category) {
       case 'APARTMENT':
