@@ -47,7 +47,6 @@ export class GeolocalisationService {
             this.addressData[0].longitude,
           );
         } else {
-          console.log('Adresse introuvable.');
           this.addressData = [];
         }
       })

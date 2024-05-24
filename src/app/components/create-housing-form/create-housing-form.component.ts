@@ -53,7 +53,6 @@ export class CreateHousingFormComponent {
       alert('Veuillez vous connecter pour accéder au formulaire');
       this.router.navigate(['/login']);
     }
-
     this.housingFormInit();
   }
 

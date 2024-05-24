@@ -8,7 +8,7 @@
       novalidate
     >
       <div class="input-container">
-        <p class="login">Contents de vous revoir !</p>
+        <h2 class="login">Contents de vous revoir !</h2>
         <label for="username">Nom d'utilisateur</label>
         <input
           type="text"
@@ -54,9 +54,11 @@
           </div>
         </div>
       </div>
-      <p>
+      <p class="register-link">
         Vous n’avez pas de compte ?
-        <a routerLink="/register">Créez un compte en quelques secondes </a>
+        <a class="register-link" routerLink="/register"
+          >Créez un compte en quelques secondes
+        </a>
       </p>
       <div class="input-container">
         <button mat-flat-button color="primary" class="large-btn">

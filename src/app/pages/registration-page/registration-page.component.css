@@ -1,11 +1,12 @@
 /* GENERAL  */
-* {
-  font-family: "Roboto", sans-serif;
+.login-link {
+  font-size: 14px;
 }
-
+a {
+  color: var(--blue-color);
+  text-decoration: underline;
+}
 .register {
-  font-size: 25px;
-  font-weight: bold;
   text-align: center;
 }
 

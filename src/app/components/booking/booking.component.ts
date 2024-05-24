@@ -47,6 +47,7 @@ export class BookingComponent {
         () => {
           console.log('Réservation réussie');
           alert('Votre réservation a bien été enregistrée 🎉');
+          this.reloadPage();
         },
         (error) => {
           console.error(error);
@@ -90,5 +91,9 @@ export class BookingComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log('La popup a été fermée');
     });
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }

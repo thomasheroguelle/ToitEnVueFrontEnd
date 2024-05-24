@@ -9,7 +9,7 @@
     />
 
     <div class="details">
-      <p class="product-price">{{ housing.price }} €/mois</p>
+      <p class="product-price">{{ housing.price }} € par jours</p>
       <div class="display-flex">
         <i class="fa-solid fa-location-dot"></i>
         <p class="product-address">
@@ -50,10 +50,10 @@
 
       <h4>Prix</h4>
 
-      <p>{{ housing.price }} € par mois</p>
+      <p>{{ housing.price }} € par jours</p>
 
       <h4>Détails</h4>
-      <p>Nombre de pièces {{ housing.rooms }}</p>
+      <p>Nombre de pièces : {{ housing.rooms }}</p>
 
       <p>Type de bien : {{ returnHousingCategory() }}</p>
       <p>Etat : {{ getConditionLabel() }}</p>

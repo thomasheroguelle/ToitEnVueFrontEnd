@@ -8,7 +8,6 @@ import { IHousing } from '../../../interfaces/IHousing';
 })
 export class HousingCRUDService {
   private apiUrl = 'http://localhost:8091/api/v1/housing';
-  newHousingId!: number;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -16,8 +15,8 @@ export class HousingCRUDService {
     const headers = new HttpHeaders();
     return this.httpClient.post<any>(this.apiUrl, formData, { headers }).pipe(
       catchError((error) => {
-        alert(error);
-        return of(null);
+        alert(`Sniff, une erreur s'est produite : ${error.message}`);
+        return of({ success: false, message: 'La requête a échouée' });
       }),
     );
   }
@@ -38,7 +37,10 @@ export class HousingCRUDService {
     );
   }
 
+  newHousingId!: number;
   setNewHousingId(id: number) {
     this.newHousingId = id;
   }
 }
+
+//         return of({ success: false, message: 'La requête a échouée' });   Retourne un objet par défaut en cas d'erreur

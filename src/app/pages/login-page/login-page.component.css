@@ -1,15 +1,14 @@
 /* GENERAL  */
-* {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-}
-
 .login {
-  font-size: 25px;
-  font-weight: bold;
   text-align: center;
 }
-
+.register-link {
+  font-size: 14px;
+}
+a {
+  color: var(--blue-color);
+  text-decoration: underline;
+}
 /* CONTAINERS  */
 .wrapper-container {
   display: flex;

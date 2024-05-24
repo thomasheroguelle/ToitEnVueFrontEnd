@@ -18,31 +18,22 @@ export class RegistrationPageComponent {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-  getUser!: string;
   username?: string;
 
   constructor(
     private authService: AuthService,
     private route: Router,
-    private storageService: StorageService,
   ) {}
-
-  ngOnInit(): void {
-    if (this.storageService.isLoggedIn()) {
-      this.isSuccessful = true;
-      this.storageService.getUser();
-      this.route.navigate(['/housings']);
-    }
-  }
 
   onSubmit(): void {
     const { username, email, password } = this.form;
     this.authService.register(username, email, password).subscribe({
       next: (data) => {
         this.isSuccessful = true;
-        this.storageService.saveUser(data);
-        this.route.navigate(['housings']);
-        this.reloadPage();
+        alert(
+          'Inscription réalisée avec succès ! Veuillez à présent vous connecter.',
+        );
+        this.route.navigate(['/login']);
       },
       error: (err) => {
         this.errorMessage = err.error.message;
