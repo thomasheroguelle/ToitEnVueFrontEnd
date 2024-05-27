@@ -1,0 +1,39 @@
+<h4>Mes réservations</h4>
+<div
+  class="container flex-wrap"
+  *ngIf="bookings && bookings.length > 0; else noBookings"
+>
+  <div
+    class="card"
+    [routerLink]="'/housings/' + booking.housingDto.housing_id"
+    *ngFor="let booking of bookings"
+  >
+    <div class="card-img-holder">
+      <img
+        [src]="
+          'http://localhost:8091/api/v1/files/' +
+          booking.housingDto.files[0].file_name
+        "
+        alt="Image"
+        class="product-image"
+      />
+    </div>
+    <p>
+      Du <strong>{{ booking.beginningDate }} </strong> au
+      <strong>{{ booking.endDate }} </strong>
+    </p>
+    <div class="housing-details">
+      <h3>{{ booking.housingDto.title }}</h3>
+      <p class="product-address">
+        {{ booking.housingDto.address }}, {{ booking.housingDto.city }},
+        {{ booking.housingDto.zipcode }}
+      </p>
+      <p>{{ booking.housingDto.price }} €</p>
+      <p>Statut : {{ getStatusText(booking.statusEnum) }}</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #noBookings>
+  <p>Aucune réservation trouvée.</p>
+</ng-template>

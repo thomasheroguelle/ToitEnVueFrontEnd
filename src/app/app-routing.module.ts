@@ -14,6 +14,7 @@ import { HousingDetailPageComponent } from './pages/housing-detail-page/housing-
 
 import { SuccessPageComponent } from './pages/success-page/success-page.component';
 import { MapPageComponent } from './pages/map-page/map-page.component';
+import { UserBookingsComponent } from './components/user-bookings/user-bookings.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -40,6 +41,8 @@ const routes: Routes = [
   { path: 'success-page/:id', component: SuccessPageComponent },
 
   { path: 'map', component: MapPageComponent },
+
+  { path: 'my-bookings', component: UserBookingsComponent },
 
   { path: '**', component: ErrorPageComponent },
 ];

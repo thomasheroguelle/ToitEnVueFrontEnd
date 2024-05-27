@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UserHousingService } from '../../services/user-housing.service';
+import { UserHousingService } from '../../services/user-owner/user-housing.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
 import { IHousing } from '../../../interfaces/IHousing';
 import { HousingCRUDService } from '../../services/housing/housing-crud.service';
-import { BookingService } from '../../services/booking.service';
+import { BookingService } from '../../services/booking/booking.service';
 
 @Component({
   selector: 'app-user-housing',
@@ -13,7 +13,7 @@ import { BookingService } from '../../services/booking.service';
 })
 export class UserHousingComponent {
   userId = this.storageService.getUser().id;
-  housesList: IHousing[] = [];
+  userHousesList: IHousing[] = [];
 
   constructor(
     private userOwner: UserHousingService,
@@ -39,9 +39,7 @@ export class UserHousingComponent {
   getHouses(): void {
     this.userOwner.getHousingByUserId(this.userId).subscribe(
       (response) => {
-        console.log(response, 'response');
-        this.housesList = response;
-        console.log(this.housesList);
+        this.userHousesList = response;
       },
       (error) => {
         console.error(error, 'error');
@@ -49,22 +47,8 @@ export class UserHousingComponent {
     );
   }
 
-  deleteHousing(id: number): void {
-    this.housingCrud.deleteHousing(id).subscribe(
-      (response) => {
-        alert('Annonce supprimée avec succès !');
-        window.location.reload();
-      },
-      (error) => {
-        console.error('Une erreur est survenue : ', error);
-        if (error.error) {
-          this.showAlert(error.error);
-          console.log(error.error);
-        } else {
-          this.showAlert('Une erreur est survenue.');
-        }
-      },
-    );
+  onHouseDeleted(): void {
+    this.getHouses();
   }
 
   showAlert(errorMessage: string): void {

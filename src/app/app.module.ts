@@ -48,6 +48,9 @@ import { httpInterceptorProviders } from '../helpers/http.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { BookingDialogComponent } from './components/booking-dialog/booking-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UserHousingCardComponent } from './components/user-housing-card/user-housing-card.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { UserBookingsComponent } from './components/user-bookings/user-bookings.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +83,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     FooterComponent,
     ErrorPageComponent,
     BookingDialogComponent,
+    UserHousingCardComponent,
+    UserBookingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,6 +107,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

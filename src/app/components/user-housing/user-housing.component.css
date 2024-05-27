@@ -1,62 +1,9 @@
 /* general  */
-.date {
-  margin-top: 1rem;
-}
-
-ul {
-  margin-top: 0.5rem;
-  padding-left: 1rem;
-  padding-inline-start: 0;
-}
-
-li {
-  margin-bottom: 0.25rem;
-}
-
-li b {
-  font-weight: 500;
-}
-
 .container {
   padding-left: 10px;
 }
 
-article {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2vh;
-  transition: box-shadow 0.3s ease;
-  margin-top: 20px;
-}
-
-.house-article {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding-bottom: 2rem;
-}
-
-.product-image {
-  width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px #ddd;
-}
-
-.image-container {
-  flex: 1;
-  max-width: 400px;
-  margin-right: 2rem;
-}
-
-.product-address {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  color: var(--label-color);
-}
-
+/* noHouseFound  */
 .img-not-found {
   max-width: 100%;
   width: 100%;
@@ -77,19 +24,4 @@ article {
 
 .notfound {
   height: 100%;
-}
-
-@media screen and (max-width: 1024px) {
-  .house-article {
-    flex-direction: column;
-  }
-  article {
-    padding: 2px;
-  }
-  .image-container {
-    margin-right: 0;
-  }
-  .container {
-    padding: 5px;
-  }
 }

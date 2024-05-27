@@ -1,0 +1,48 @@
+article {
+  border: 1px solid var(--border-input);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2vh;
+  margin-top: 20px;
+}
+
+.card-img-holder {
+  flex: 1;
+  max-width: 500px;
+  height: auto;
+  margin-right: 2rem;
+  cursor: pointer;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white-color);
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card article {
+  padding: 16px;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+li {
+  margin: 4px 0;
+  font-size: 1em;
+  color: var(--label-colorl);
+}
+
+.medium-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.5);
+}

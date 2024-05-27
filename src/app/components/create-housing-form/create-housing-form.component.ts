@@ -9,7 +9,7 @@ import {
 } from '../../../interfaces/IHousing';
 import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
-import { GeolocalisationService } from '../../services/geolocalisation.service';
+import { GeolocalisationService } from '../../services/geolocalisation/geolocalisation.service';
 
 @Component({
   selector: 'app-create-housing-form',
