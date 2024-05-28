@@ -9,6 +9,8 @@ import { UserBookings } from '../../../interfaces/IUserBooking';
   providedIn: 'root',
 })
 export class BookingService {
+  errorMessage: string = 'Vous devez être connecté pour réserver une location';
+
   private apiUrl = 'http://localhost:8091/api/v1/booking';
 
   constructor(
@@ -46,16 +48,16 @@ export class BookingService {
 
   private handleError(error: HttpErrorResponse): Observable<any> {
     if (error.status === 401) {
-      alert('Vous devez être connecté pour réserver une location');
+      alert(this.errorMessage);
     } else {
-      let errorMessage = 'Mince, il semble y avoir une erreur';
+      this.errorMessage = 'Mince, il semble y avoir une erreur';
       if (error.error instanceof ErrorEvent) {
-        errorMessage = error.error.message;
+        this.errorMessage = error.error.message;
       } else {
-        errorMessage = error.error;
+        this.errorMessage = error.error;
       }
-      alert(errorMessage);
-      console.error(errorMessage);
+      alert(this.errorMessage);
+      console.error(this.errorMessage);
     }
     return throwError('Quelque chose a mal tourné');
   }

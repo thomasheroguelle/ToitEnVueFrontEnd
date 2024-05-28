@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BookingService } from '../../services/booking/booking.service';
 import { IHousing } from '../../../interfaces/IHousing';
 import { HousingCRUDService } from '../../services/housing/housing-crud.service';
