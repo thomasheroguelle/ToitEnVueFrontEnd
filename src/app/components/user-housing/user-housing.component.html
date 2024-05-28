@@ -1,41 +1,11 @@
-<div class="container" *ngIf="housesList.length > 0; else noHouseFound">
+<div class="container" *ngIf="userHousesList.length > 0; else noHouseFound">
   <h4>Liste des logements</h4>
-  <article *ngFor="let house of housesList" class="house-article">
-    <div class="image-container">
-      <img
-        [src]="'http://localhost:8091/api/v1/files/' + house.files[0].file_name"
-        alt="logement"
-        class="product-image"
-      />
-    </div>
-    <div class="house-details">
-      <h3>{{ house.title }}</h3>
-
-      <p class="product-address">{{ house.city }}, {{ house.zipcode }}</p>
-
-      <p>{{ house.price }} € / jours</p>
-      <p class="dates">Dates de réservation:</p>
-      <ul *ngIf="house.bookingDate.length > 0; else noBooking">
-        <li *ngFor="let booking of house.bookingDate">
-          Du <b> {{ booking.beginningDate }} </b> au
-          <b> {{ booking.endDate }} </b>
-        </li>
-      </ul>
-
-      <button
-        class="medium-btn"
-        color="warn"
-        mat-flat-button
-        (click)="deleteHousing(house.housing_id)"
-      >
-        Supprimer l'annonce
-      </button>
-
-      <ng-template #noBooking>
-        <p>Pas encore de réservation</p>
-      </ng-template>
-    </div>
-  </article>
+  <div *ngFor="let house of userHousesList">
+    <app-user-housing-card
+      [userHouses]="house"
+      (houseDeleted)="onHouseDeleted()"
+    ></app-user-housing-card>
+  </div>
 </div>
 
 <ng-template #noHouseFound>

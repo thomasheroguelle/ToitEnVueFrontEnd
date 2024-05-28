@@ -1,11 +1,16 @@
 import { Component, Input } from '@angular/core';
-import { BookingService } from '../../services/booking.service';
+import { BookingService } from '../../services/booking/booking.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HousingCRUDService } from '../../services/housing/housing-crud.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { IHousing } from '../../../interfaces/IHousing';
 import { BookingDialogComponent } from '../booking-dialog/booking-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-booking',
@@ -21,13 +26,16 @@ export class BookingComponent {
   currentDate!: string;
   @Input() housingData!: IHousing;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   constructor(
     private bookingService: BookingService,
     private activatedRoute: ActivatedRoute,
     private housingService: HousingCRUDService,
     private storageService: StorageService,
-    private router: Router,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
   ) {
     this.currentDate = this.getCurrentDate();
   }
@@ -46,11 +54,29 @@ export class BookingComponent {
       .subscribe(
         () => {
           console.log('Réservation réussie');
-          alert('Votre réservation a bien été enregistrée 🎉');
-          this.reloadPage();
+          this.snackBar.open(
+            'Votre réservation a bien été enregistrée 🎉',
+            'Fermer',
+            {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              duration: 3000,
+              panelClass: ['success-snackbar'],
+            },
+          );
         },
         (error) => {
           console.error(error);
+          this.snackBar.open(
+            "Une erreur s'est produite lors de la réservation...",
+            'Fermer',
+            {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              duration: 3000,
+              panelClass: ['error-snackbar'],
+            },
+          );
         },
       );
   }
@@ -91,9 +117,5 @@ export class BookingComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log('La popup a été fermée');
     });
-  }
-
-  reloadPage(): void {
-    window.location.reload();
   }
 }

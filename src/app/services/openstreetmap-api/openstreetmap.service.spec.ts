@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { OpenstreetmapService } from './openstreetmap.service';
 
 describe('OpenstreetmapService', () => {

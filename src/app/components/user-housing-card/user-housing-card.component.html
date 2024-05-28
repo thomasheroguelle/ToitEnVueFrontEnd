@@ -1,0 +1,53 @@
+<div class="card">
+  <article>
+    <div class="card-img-holder">
+      <img
+        [src]="
+          'http://localhost:8091/api/v1/files/' + userHouses.files[0].file_name
+        "
+        alt="housing product card "
+        class="product-image"
+        [routerLink]="'/housings/' + userHouses.housing_id"
+      />
+    </div>
+    <h3>{{ userHouses.title }}</h3>
+    <p class="product-address">
+      {{ userHouses.city }}, {{ userHouses.zipcode }}
+    </p>
+    <p>{{ userHouses.price }} € par jours</p>
+    <div *ngIf="bookings.length > 0">
+      <h4>Réservations :</h4>
+      <ul>
+        <li *ngFor="let booking of bookings">
+          Réservation du {{ booking.beginningDate }} au {{ booking.endDate }}
+          <button
+            (click)="confirmBooking(booking.id)"
+            mat-button
+            class="confirm"
+          >
+            Confirmer
+          </button>
+
+          <button
+            (click)="cancelBooking(booking.id)"
+            mat-button
+            class="rejected"
+          >
+            Refuser
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="bookings.length === 0">
+      <p>Pas encore de réservation</p>
+    </div>
+    <button
+      class="medium-btn"
+      color="warn"
+      mat-flat-button
+      (click)="deleteHousing()"
+    >
+      Supprimer l'annonce
+    </button>
+  </article>
+</div>

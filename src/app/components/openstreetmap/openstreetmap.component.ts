@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OpenstreetmapService } from '../../services/openstreetmap.service';
+import { OpenstreetmapService } from '../../services/openstreetmap-api/openstreetmap.service';
 
 @Component({
   selector: 'app-openstreetmap',

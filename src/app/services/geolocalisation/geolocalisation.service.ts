@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { OpenstreetmapService } from './openstreetmap.service';
-import { IAdressData } from '../../interfaces/IAdressData';
+import { OpenstreetmapService } from '../openstreetmap-api/openstreetmap.service';
+import { IAdressData } from '../../../interfaces/IAdressData';
 
 @Injectable({
   providedIn: 'root',

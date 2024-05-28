@@ -95,7 +95,7 @@ export class OpenstreetmapService {
 
   isSavedHousingMarker(marker: L.Marker): boolean {
     const coordinatesArray = JSON.parse(
-      localStorage.getItem('coordinatesArray') || '[]',
+      localStorage.getItem('coordinatesArray') ?? '[]',
     );
     for (const coord of coordinatesArray) {
       if (

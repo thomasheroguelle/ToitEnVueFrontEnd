@@ -50,13 +50,17 @@
             <mat-icon>account_circle</mat-icon>
             <span>Mon profil</span>
           </button>
-          <button (click)="logout()" mat-menu-item>
-            <mat-icon>exit_to_app</mat-icon>
-            <span>Déconnexion</span>
-          </button>
           <button mat-menu-item>
             <mat-icon>home</mat-icon>
             <span routerLink="/my-ads">Mes annonces</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon> vpn_key</mat-icon>
+            <span routerLink="/my-bookings">Mes réservations</span>
+          </button>
+          <button (click)="logout()" mat-menu-item>
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Déconnexion</span>
           </button>
         </mat-menu>
       }
@@ -81,19 +85,22 @@
           <span>Connexion</span>
         </button>
       } @else {
-        <button routerLink="/" mat-menu-item>
-          <mat-icon>home</mat-icon>
-          <span>Accueil</span>
+        <button routerLink="profil" mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Mon profil</span>
         </button>
-
         <button routerLink="/create" mat-menu-item>
           <mat-icon>add</mat-icon>
           <span>Listez votre propriété</span>
         </button>
 
         <button routerLink="/my-ads" mat-menu-item>
-          <mat-icon>store</mat-icon>
+          <mat-icon>home</mat-icon>
           <span>Mes annonces</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon> vpn_key</mat-icon>
+          <span routerLink="/my-bookings">Mes réservations</span>
         </button>
         <button (click)="logout()" mat-menu-item>
           <mat-icon>exit_to_app</mat-icon>
