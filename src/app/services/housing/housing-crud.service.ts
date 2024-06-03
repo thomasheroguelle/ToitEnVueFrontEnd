@@ -11,12 +11,12 @@ export class HousingCRUDService {
 
   constructor(private httpClient: HttpClient) {}
 
-  createHousing(formData: FormData): Observable<any> {
+  createHousing(formData: FormData): Observable<IHousing> {
     const headers = new HttpHeaders();
-    return this.httpClient.post<any>(this.apiUrl, formData, { headers }).pipe(
+    return this.httpClient.post<IHousing>(this.apiUrl, formData, { headers }).pipe(
       catchError((error) => {
         alert(`Sniff, une erreur s'est produite : ${error.message}`);
-        return of({ success: false, message: 'La requête a échouée' });
+        return throwError(error);
       }),
     );
   }
@@ -29,8 +29,8 @@ export class HousingCRUDService {
     return this.httpClient.get<IHousing>(`${this.apiUrl}/${id}`);
   }
 
-  deleteHousing(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiUrl}/${id}`).pipe(
+  deleteHousing(id: number): Observable<IHousing> {
+    return this.httpClient.delete<IHousing>(`${this.apiUrl}/${id}`).pipe(
       catchError((error) => {
         return throwError(error);
       }),

@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IUserRegistration } from '../../../interfaces/IUserRegistration';
+import { IUserLogin } from '../../../interfaces/IUserLogin';
+import { ILogoutResponse } from '../../../interfaces/ILogoutResponse';
 
 const AUTH_API = 'http://localhost:8091/api/auth/';
 
@@ -16,8 +19,8 @@ console.log(httpOptions, 'httpOptions');
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(
+  register(username: string, email: string, password: string): Observable<IUserRegistration> {
+    return this.http.post<IUserRegistration>(
       AUTH_API + 'signup',
       {
         username,
@@ -28,8 +31,8 @@ export class AuthService {
     );
   }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(
+  login(username: string, password: string): Observable<IUserLogin> {
+    return this.http.post<IUserLogin>(
       AUTH_API + 'signin',
       {
         username,
@@ -39,7 +42,8 @@ export class AuthService {
     );
   }
 
-  logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', {}, httpOptions);
+  logout(): Observable<ILogoutResponse> {
+    return this.http.post<ILogoutResponse>(
+      AUTH_API + 'signout', {}, httpOptions);
   }
 }

@@ -173,16 +173,19 @@ export class CreateHousingFormComponent {
     }
   }
 
-  onFileChanged(event: any) {
-    if (event.target.files && event.target.files.length > 0) {
-      for (let i = 0; i < event.target.files.length; i++) {
-        const file = event.target.files[i];
+  onFileChanged(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      for (let i = 0; i < input.files.length; i++) {
+        const file = input.files[i];
         this.selectedFiles.push(file);
 
         const reader = new FileReader();
 
-        reader.onload = (e: any) => {
-          this.selectedFilesURL.push(e.target.result as string);
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          if (e.target) {
+            this.selectedFilesURL.push(e.target.result as string);
+          }
         };
 
         reader.readAsDataURL(file);

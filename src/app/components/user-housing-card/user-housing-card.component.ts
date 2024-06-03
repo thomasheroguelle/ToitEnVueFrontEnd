@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { BookingService } from '../../services/booking/booking.service';
 import { IHousing } from '../../../interfaces/IHousing';
 import { HousingCRUDService } from '../../services/housing/housing-crud.service';
@@ -8,6 +8,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { IBookingDetails } from '../../../interfaces/IBookingDetails';
 
 @Component({
   selector: 'app-user-housing-card',
@@ -21,7 +22,7 @@ export class UserHousingCardComponent {
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  bookings: any[] = [];
+  bookings: IBookingDetails[] = [];
   status = Object.values(StatusEnum);
   bookingIds: number[] = [];
 
@@ -39,10 +40,10 @@ export class UserHousingCardComponent {
     this.bookingService
       .getBookingsByHousingId(this.userHouses.housing_id)
       .subscribe(
-        (data) => {
+        (data: IBookingDetails[]) => {  // data est un tableau
           this.bookings = data;
-          this.bookingIds = data.map((booking: any) => booking.bookingId);
-
+          this.bookingIds = data.map((booking) => booking.id);
+  
           console.log(
             'Réservations pour le logement : ',
             this.userHouses.housing_id,
@@ -63,6 +64,7 @@ export class UserHousingCardComponent {
         },
       );
   }
+  
 
   deleteHousing(): void {
     this.housingCrud.deleteHousing(this.userHouses.housing_id).subscribe(

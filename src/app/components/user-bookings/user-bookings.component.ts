@@ -25,7 +25,7 @@ export class UserBookingsComponent {
 
   ngOnInit() {
     this.getBookings();
-    if (this.storageService.isLoggedIn()) {
+    if (!this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.router.navigate(['housings']);
     }
@@ -38,12 +38,11 @@ export class UserBookingsComponent {
         console.log('Bookings data:', this.bookings);
       },
       (error) => {
-        this.errorMessage = error;
-        console.error('Error fetching bookings:', this.errorMessage);
+        console.error("Une erreur s'est produite");
       },
     );
   }
-
+  
   getStatusText(status: StatusEnum): string {
     switch (status) {
       case StatusEnum.confirmed:

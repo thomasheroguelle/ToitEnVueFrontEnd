@@ -40,17 +40,21 @@ export class GetHousingByIdComponent {
     );
   }
 
-  onFileChanged(event: any) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+  onFileChanged(event: Event): void {
+    const input = event.target as HTMLInputElement;
 
-    reader.onloadend = () => {
-      const base64String = reader.result as string;
-      file.base64String = base64String;
-    };
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      const reader = new FileReader();
 
-    if (file) {
-      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        (file as any).base64String = base64String;
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
     }
   }
 

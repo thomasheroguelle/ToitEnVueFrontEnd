@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
 import { OwnerChoice } from '../../../interfaces/IValidatedBooking';
 import { UserBookings } from '../../../interfaces/IUserBooking';
+import { IBookingDetails } from '../../../interfaces/IBookingDetails';
+import { IMakeBooking } from '../../../interfaces/IMakeBooking';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookingService {
-  errorMessage: string = 'Vous devez être connecté pour réserver une location';
-
   private apiUrl = 'http://localhost:8091/api/v1/booking';
 
   constructor(
@@ -22,15 +22,19 @@ export class BookingService {
     housingId: number,
     beginningDate: Date,
     endDate: Date,
-  ): Observable<any> {
+  ): Observable<IMakeBooking> {
     const url = `${this.apiUrl}?&housingId=${housingId}&beginningDate=${beginningDate}&endDate=${endDate}`;
-    return this.http.post(url, {}).pipe(catchError(this.handleError));
+    return this.http.post<IMakeBooking>(url, {}).pipe(catchError(this.handleError));
   }
 
-  getBookingsByHousingId(housingId: number): Observable<any> {
+  getBookingsByHousingId(housingId: number): Observable<IBookingDetails[]> {
     const url = `${this.apiUrl}/details/${housingId}`;
-    return this.http.get(url, {}).pipe(catchError(this.handleError));
+    return this.http.get<IBookingDetails[]>(url).pipe(
+      catchError(this.handleError)
+    );
   }
+  
+  
 
   ownerChoice(ownerChoice: OwnerChoice) {
     const url = `${this.apiUrl}/owner-choice`;
@@ -48,16 +52,16 @@ export class BookingService {
 
   private handleError(error: HttpErrorResponse): Observable<any> {
     if (error.status === 401) {
-      alert(this.errorMessage);
+      alert('Vous devez être connecté pour réserver une location');
     } else {
-      this.errorMessage = 'Mince, il semble y avoir une erreur';
+      let errorMessage = 'Mince, il semble y avoir une erreur';
       if (error.error instanceof ErrorEvent) {
-        this.errorMessage = error.error.message;
+        errorMessage = error.error.message;
       } else {
-        this.errorMessage = error.error;
+        errorMessage = error.error;
       }
-      alert(this.errorMessage);
-      console.error(this.errorMessage);
+      alert(errorMessage);
+      console.error(errorMessage);
     }
     return throwError('Quelque chose a mal tourné');
   }
