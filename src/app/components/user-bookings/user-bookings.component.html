@@ -28,7 +28,8 @@
         {{ booking.housingDto.address }}, {{ booking.housingDto.city }},
         {{ booking.housingDto.zipcode }}
       </p>
-      <p>{{ booking.housingDto.price }} €</p>
+      <p>Prix journalier : {{ booking.housingDto.price }} €</p>
+      <p>Coût total du séjour : {{ booking.totalPrice }} €</p>
       <p>Statut : {{ getStatusText(booking.statusEnum) }}</p>
     </div>
   </div>

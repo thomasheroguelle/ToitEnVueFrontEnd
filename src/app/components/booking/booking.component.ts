@@ -11,6 +11,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { IBookingDetails } from '../../../interfaces/IBookingDetails';
 
 @Component({
   selector: 'app-booking',
@@ -81,9 +82,9 @@ export class BookingComponent {
       );
   }
 
-  getReservations() {
+  getReservations(): void {
     this.bookingService.getBookingsByHousingId(this.housingId).subscribe(
-      (data: any) => {
+      (data: IBookingDetails[]) => {
         console.log('Dates réservées', data);
       },
       (error) => {

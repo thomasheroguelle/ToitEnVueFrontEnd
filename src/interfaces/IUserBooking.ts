@@ -7,6 +7,7 @@ export interface UserBookings {
   endDate: Date;
   housingDto: HousingFromUser;
   statusEnum: StatusEnum;
+  totalPrice: number;
 }
 
 export interface HousingFromUser {

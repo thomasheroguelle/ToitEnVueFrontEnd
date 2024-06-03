@@ -201,6 +201,13 @@ img {
   --mat-snack-bar-button-color: var(--white-color);
 }
 
+.mat-mdc-menu-item {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+  transition: background-color 0.3s ease;
+}
+.mat-mdc-menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
 .confirm {
   color: #1f8d49 !important;
   font-weight: bold;

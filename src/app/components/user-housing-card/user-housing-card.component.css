@@ -46,3 +46,6 @@ li {
   outline: none;
   box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.5);
 }
+ .none {
+  display: none;
+ }
