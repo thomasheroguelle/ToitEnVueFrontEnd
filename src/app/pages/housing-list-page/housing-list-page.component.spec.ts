@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HousingListPageComponent } from './housing-list-page.component';
+import { ToggleViewComponent } from '../../components/toggle-view/toggle-view.component';
 
 describe('HousingListPageComponent', () => {
   let component: HousingListPageComponent;
@@ -8,7 +9,7 @@ describe('HousingListPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HousingListPageComponent],
+      declarations: [HousingListPageComponent, ToggleViewComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HousingListPageComponent);
