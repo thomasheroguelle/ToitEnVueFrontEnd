@@ -40,10 +40,10 @@ export class UserHousingCardComponent {
     this.bookingService
       .getBookingsByHousingId(this.userHouses.housing_id)
       .subscribe(
-        (data: IBookingDetails[]) => {  // data est un tableau
+        (data: IBookingDetails[]) => {
           this.bookings = data;
           this.bookingIds = data.map((booking) => booking.id);
-  
+
           console.log(
             'Réservations pour le logement : ',
             this.userHouses.housing_id,
@@ -65,7 +65,6 @@ export class UserHousingCardComponent {
       );
   }
   
-
   deleteHousing(): void {
     this.housingCrud.deleteHousing(this.userHouses.housing_id).subscribe(
       () => {

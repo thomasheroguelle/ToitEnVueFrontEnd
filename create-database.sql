@@ -27,18 +27,20 @@ CREATE TABLE housing (
     zipcode INT NOT NULL,
     city VARCHAR(45) NOT NULL,
     user_id BIGINT(20) NOT NULL,
-    CONSTRAINT fk_housing_user FOREIGN KEY (user_id) REFERENCES user (id)
+    CONSTRAINT fk_housing_user FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
 CREATE TABLE booking (
-    booking_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    booking_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     beginning_date DATE NOT NULL,
     end_date DATE NOT NULL,
+    status ENUM('PENDING', 'CONFIRMED', 'REJECTED') NOT NULL DEFAULT 'PENDING',
     user_id BIGINT(20) NOT NULL,
+    user_id_interested BIGINT(20) NOT NULL,
     housing_id INT NOT NULL,
-    CONSTRAINT fk_booking_user_client FOREIGN KEY (user_id) REFERENCES user (id),
-    CONSTRAINT fk_booking_user_host FOREIGN KEY (user_id) REFERENCES user (id),
-    CONSTRAINT fk_booking_housing1 FOREIGN KEY (housing_id) REFERENCES housing (housing_id)
+    CONSTRAINT fk_booking_user_id FOREIGN KEY(user_id) REFERENCES user(id),
+    CONSTRAINT fk_booking_user_id_interested FOREIGN KEY(user_id_interested) REFERENCES user(id),
+    CONSTRAINT fk_booking_housing FOREIGN KEY (housing_id) REFERENCES housing(housing_id)
 );
 
 CREATE TABLE file (

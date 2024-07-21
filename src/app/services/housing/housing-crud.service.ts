@@ -2,23 +2,25 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, throwError } from 'rxjs';
 import { IHousing } from '../../../interfaces/IHousing';
+import { environment } from '../../../environment/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HousingCRUDService {
-  private apiUrl = 'http://localhost:8091/api/v1/housing';
+  private apiUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) {}
 
   createHousing(formData: FormData): Observable<IHousing> {
-    const headers = new HttpHeaders();
-    return this.httpClient.post<IHousing>(this.apiUrl, formData, { headers }).pipe(
-      catchError((error) => {
-        alert(`Sniff, une erreur s'est produite : ${error.message}`);
-        return throwError(error);
-      }),
-    );
+    return this.httpClient
+      .post<IHousing>(this.apiUrl, formData)
+      .pipe(
+        catchError((error) => {
+          alert(`Sniff, une erreur s'est produite : ${error.message}`);
+          return throwError(error);
+        }),
+      );
   }
 
   getHousingList(): Observable<IHousing[]> {

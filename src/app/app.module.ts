@@ -16,7 +16,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { ToggleViewComponent } from './components/toggle-view/toggle-view.component';
 import { FilterByHousingComponent } from './components/filter-by-housing/filter-by-housing.component';
 import { HousingDetailPageComponent } from './pages/housing-detail-page/housing-detail-page.component';
 import { HousingCreatePageComponent } from './pages/housing-create-page/housing-create-page.component';
@@ -39,7 +38,6 @@ import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.comp
 import { TermsOfUsePageComponent } from './pages/terms-of-use-page/terms-of-use-page.component';
 import { PrivacyPolicyPageComponent } from './pages/privacy-policy-page/privacy-policy-page.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
-import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
@@ -51,6 +49,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UserHousingCardComponent } from './components/user-housing-card/user-housing-card.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserBookingsComponent } from './components/user-bookings/user-bookings.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ToggleViewComponent } from './components/toggle-view/toggle-view.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +108,7 @@ import { UserBookingsComponent } from './components/user-bookings/user-bookings.
     HttpClientModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    HttpClientModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
